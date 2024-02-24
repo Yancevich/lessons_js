@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 4</title>
+</head>
+
+<body>
+  <script>
+    let centimeters = parseFloat(prompt("Введіть довжину у сантиметрах"))
+
+    let meters = (centimeters / 100) % 1000
+    // meters %= 1000
+    let kilometers = centimeters / 100000
+
+    document.write(`Ви ввели ${centimeters} см, це = ${Math.floor(kilometers)} км. ${Math.floor(meters)} м. `)
+
+  </script>
+</body>
+
+</html>

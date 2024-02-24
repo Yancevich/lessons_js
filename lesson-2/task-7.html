@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 7</title>
+</head>
+
+<body>
+  <script>
+    const minMonthNumber = 1
+    const maxMonthNumber = 13
+    const maxDayNumber = 7
+
+    let randomMonth = Math.floor(Math.random() * (maxMonthNumber - minMonthNumber) + minMonthNumber)
+    let randomDay = Math.floor(Math.random() * maxDayNumber)
+    let sum = randomMonth + randomDay
+
+    document.write(`Рандомне число місяця ${randomMonth}<br>
+    Рандомне число дня ${randomDay}<br>
+    Їхня сума ${sum}
+    `)
+  </script>
+</body>
+
+</html>

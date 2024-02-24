@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 3</title>
+</head>
+
+<body>
+  <script>
+    let productPrice = parseFloat(prompt("Введіть ціну одиниці товару"))
+    let productQuantity = parseFloat(prompt("Введіть кількість товару"))
+    const tax = 0.05
+
+    let totalPrice = productPrice * productQuantity
+    let countTax = totalPrice * tax
+    let totalPriceWithTax = totalPrice + countTax
+
+    document.write(`Загальна вартість(<b>без ПДВ</b>): ${totalPrice} грн<br>`)
+    document.write(`ПДВ: ${countTax} грн<br>`)
+    document.write(`Загальна вартість з <b>ПДВ:</b> ${totalPriceWithTax} грн<br>`)
+  </script>
+</body>
+
+</html>

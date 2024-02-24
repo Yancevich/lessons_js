@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 6</title>
+</head>
+
+<body>
+  <script>
+    let firstItemPrice = parseFloat(prompt("Введіть вартість першого товару"))
+    let firstItemQuantity = parseFloat(prompt("Введіть к-сть першого товару"))
+
+    let secondItemPrice = parseFloat(prompt("Введіть вартість другого товару"))
+    let secondItemQuantity = parseFloat(prompt("Введіть к-сть другого товару"))
+
+    let thirdItemPrice = parseFloat(prompt("Введіть вартість третього товару"))
+    let thirdItemQuantity = parseFloat(prompt("Введіть к-сть третього товару"))
+
+    let firtsTotalPrice = firstItemPrice * firstItemQuantity
+    let secondTotalPrice = secondItemPrice * secondItemQuantity
+    let thirdTotalPrice = thirdItemPrice * thirdItemQuantity
+
+    let totalPrice = firtsTotalPrice + secondTotalPrice + thirdTotalPrice
+
+    document.write(`
+    <h1>Супер Чек</h1><br>
+    <span style="font-size: 15px;">
+      Перший товар ---------------- ${firtsTotalPrice} грн.<br>
+      к-сть: ${firstItemQuantity} <br>Ціна: ${firstItemPrice} грн.
+    </span>
+    <br><br>
+    <span style="font-size: 15px">
+      Другий товар ---------------- ${secondTotalPrice} грн.<br>
+      к-сть: ${secondItemQuantity} <br>Ціна: ${secondItemPrice} грн.
+    </span>
+    <br><br>
+    <span style="font-size: 15px">
+      Третій товар ----------------- ${thirdTotalPrice} грн.<br>
+      к-сть: ${thirdItemQuantity} <br>Ціна: ${thirdItemPrice} грн.
+    </span>
+    <h3>
+      <b>СУМА ----------------- ${totalPrice} грн.<b>
+    </h2>
+    `)
+  </script>
+</body>
+
+</html>
