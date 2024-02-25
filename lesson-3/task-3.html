@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 3</title>
+</head>
+
+<body>
+  <script>
+    let minNumber = 1
+    let maxNumber = 5
+    let randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber)
+    console.log(randomNumber);
+
+    let userNumber = parseInt(prompt("Спробуй вгадати число від 1 до 5", "1"))
+
+    if (userNumber >= minNumber && userNumber <= maxNumber)
+      if (userNumber === randomNumber) {
+        document.write(`Ви вгадали з першої спроби!!!`)
+      }
+      else {
+        userNumber = parseInt(prompt("Даю останній шанс", "1"))
+        if (userNumber >= minNumber && userNumber <= maxNumber) {
+          if (userNumber === randomNumber) {
+            document.write(`Ви вгадали з другої спроби!!!`)
+          }
+          else
+            document.write(`Нажаль ви не вгадали, це було число ${randomNumber}`)
+        }
+        else document.write("ПОМИЛКА Введіть число в заданому інтервалі від 1 до 5")
+      }
+    else
+      document.write("ПОМИЛКА Введіть число в заданому інтервалі від 1 до 5")
+  </script>
+</body>
+
+</html>

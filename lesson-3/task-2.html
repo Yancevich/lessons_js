@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 2</title>
+</head>
+
+<body>
+  <script>
+    let productPrice = parseFloat(prompt("Введіть ціну товару", "0"))
+    let cashNum = parseFloat(prompt("Введіть кількість грошей", "0"))
+    const ticketPrice = 4
+
+    if (cashNum >= productPrice) {
+      cashNum -= productPrice
+      document.write(`Ви успішно оплатили товар. Ваша решта ${cashNum} грн.`)
+      if (cashNum >= ticketPrice) {
+        document.write(`<br>Пропонуємо купити лотерею за 4 грн`)
+        cashNum -= ticketPrice
+      }
+    }
+    else
+      document.write(`Не вистачає коштів :(`)
+  </script>
+</body>
+
+</html>

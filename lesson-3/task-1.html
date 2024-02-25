@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 1</title>
+</head>
+
+<body>
+  <script>
+    const firstChildName = prompt("Введіть ім'я першої дитини")
+    const secondChildName = prompt("Введіть ім'я другої дитини")
+
+    let firstChildCandiesQty = parseInt(prompt("Введіть кількість цукерок першої дитини", "0"))
+    let secondChildCandiesQty = parseInt(prompt("Введіть кількість цукерок другої дитини", "0"))
+
+    if (firstChildCandiesQty === secondChildCandiesQty)
+      document.write(`У ${firstChildName} та ${secondChildName} кількість цукрок однакова(${firstChildCandiesQty})`)
+    else if (firstChildCandiesQty > secondChildCandiesQty)
+      document.write(`У ${firstChildName} більше цукерок`)
+    else
+      document.write(`У ${secondChildName} більше цукерок`)
+  </script>
+</body>
+
+</html>

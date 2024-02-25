@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 5</title>
+</head>
+
+<body>
+  <script>
+    let driverLicenseCategory = prompt("Введіть категорію водійських прав (А, В, С)")
+
+    switch (driverLicenseCategory) {
+      case ("А"):
+      case ("A"): document.write(`Ви можете керувати мотоциклом`)
+        break
+      case ("В"):
+      case ("B"): document.write(`Ви можете керувати легковим автомобілем`)
+        break
+      case ("С"):
+      case ("C"): document.write(`Ви можете керувати вантажним автомобілем`)
+        break
+
+      default: document.write(`Помилка`)
+        break
+    }
+
+
+  </script>
+</body>
+
+</html>
