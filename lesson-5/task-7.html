@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 7</title>
+</head>
+
+<body>
+  <script>
+    let userNumber = parseInt(prompt("Введіть к-сть абзаців"))
+    for (let index = 1; index <= userNumber; index++) {
+      document.write(`<h1>Заголовок ${index}</h1>`)
+      for (let pNumber = 1; pNumber <= index; pNumber++) {
+        document.write(`<p>Розділ ${index}, параграф ${pNumber}</p>`)
+      }
+      document.write('<hr>')
+    }
+  </script>
+</body>
+
+</html>

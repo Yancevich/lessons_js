@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 1</title>
+</head>
+
+<body>
+  <script>
+    const randomNumbersCount = parseInt(prompt("Введіть бажану к-сть випадкових чисел", "1"))
+    let index = 0;
+    const max = 100;
+    const min = 1;
+
+    document.write('<ul>')
+    do {
+      let randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
+
+      document.write(`<li>${randomNumber}</li>`);
+      index++;
+    } while (index < randomNumbersCount);
+    document.write('</ul>')
+  </script>
+</body>
+
+</html>

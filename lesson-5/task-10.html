@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 10</title>
+</head>
+
+<body>
+  <script>
+    let min = parseInt(prompt(`Введіть мінімальне число`))
+    let max = parseInt(prompt(`Введіть максимальне число`))
+    let number = min
+    let sum = 0
+
+    for (number; number <= max; number++) {
+      if (number % 2) {
+        sum += number
+      }
+    }
+    document.write(`Сума всіх непарних чисел = ${sum}`)
+  </script>
+</body>
+
+</html>

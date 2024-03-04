@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 12</title>
+</head>
+
+<style>
+  .btn {
+    font-size: 30px;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 25px;
+    color: #fff;
+    background-color: #962c2c;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn:hover {
+    background-color: #751313;
+  }
+
+  .img-block {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: space-between;
+
+  }
+
+  .img {
+    max-width: 100px;
+    padding: 15px;
+    border: solid 5px black;
+  }
+
+  .win-text {
+    font-size: 30px;
+    margin: 0;
+    margin-bottom: 10px;
+  }
+</style>
+
+<body>
+  <script>
+    let imgNumber
+    let combination = ""
+
+    document.write(`<div class="img-block">`)
+    for (let index = 0; index < 3; index++) {
+      imgNumber = Math.floor(1 + (Math.random() * 4))
+      switch (imgNumber) {
+        case 1:
+          document.write(`<img class="img" src="img/slot-machine-fruit-svgrepo-com.svg" alt="grape">`)
+          combination += "1"
+          break;
+        case 2:
+          document.write(`<img class="img" src="img/slot-machine-svgrepo-com.svg" alt="apple">`)
+          combination += "2"
+          break;
+        case 3:
+          document.write(`<img class="img" src=" img/vitamins-svgrepo-com.svg" alt="watermelon">`)
+          combination += "3"
+          break;
+        case 4:
+          document.write(`<img class="img" src="img/dollar-symbol-money-svgrepo-com.svg" alt="jackpot">`)
+          combination += "4"
+          break;
+
+        default:
+          break;
+      }
+    }
+    document.write(`</div>`)
+
+    document.write(`<p class="win-text">`)
+    switch (combination) {
+      case "111":
+        document.write(`Ви виграли 100 грн`)
+        break;
+
+      case "222":
+        document.write(`Ви виграли 200 грн`)
+        break;
+
+      case "333":
+        document.write(`Ви виграли 500 грн`)
+        break;
+
+      case "444":
+        document.write(`Ви виграли 1000 грн`)
+        break;
+
+      default:
+        break;
+    }
+    document.write(`</p>`)
+
+    document.write(`
+      <div>
+        <a href="task-12.html" class="btn">Крути</a>
+      </div>
+      `)
+
+  </script>
+</body>
+
+</html>

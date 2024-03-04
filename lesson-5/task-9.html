@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 9</title>
+</head>
+
+<body>
+  <script>
+    let isGuess
+    let index = 1
+
+    do {
+      let computerNumber = Math.floor(Math.random() * 10)
+      isGuess = confirm(`Це число ${computerNumber}?`)
+
+      if (isGuess) {
+        document.write(`Комп'ютер: Я вгадав з ${index} спроби!!!`)
+        break;
+      }
+      else ++index
+    } while (true)
+  </script>
+</body>
+
+</html>

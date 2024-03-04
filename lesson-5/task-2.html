@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 2</title>
+</head>
+
+<form method="POST" action="#"></form>
+
+<body>
+  <script>
+    document.write('<form method="POST" action="#">')
+    for (let index = 1; index <= 10; index++) {
+      document.write("<div>")
+      document.write(`
+          <label for="productPrice${index}">Product ${index}</label>
+          <input id="productPrice${index}" name="productPrice" type="text">
+          `)
+      document.write("</div>")
+    }
+    document.write('</form>')
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 3-6</title>
+</head>
+
+<body>
+  <h1>Задачі на виведення таблиць</h1>
+
+  <h2>
+    Задача 3. Вивести таблицю з одним рядком і 7 стовпцями.
+  </h2>
+  <script>
+    document.write('<table border="1px">')
+    for (let rows = 1; rows <= 1; rows++) {
+      document.write(`<tr>`)
+      for (let columns = 1; columns <= 7; columns++) {
+        document.write(`<td>`)
+        document.write(`${columns}`)
+        document.write(`</td>`)
+      }
+      document.write(`</tr>`)
+    }
+    document.write('</table>')
+  </script>
+
+  <h2>
+    Задача 4. Вивести таблицю з 3 рядків і 7 стовпців
+  </h2>
+  <script>
+    document.write('<table border="1px">')
+    for (let rows = 1; rows <= 3; rows++) {
+      document.write(`<tr>`)
+      for (let columns = 1; columns <= 7; columns++) {
+        document.write(`<td>`)
+        document.write(`${columns}`)
+        document.write(`</td>`)
+      }
+      document.write(`</tr>`)
+    }
+    document.write('</table>')
+  </script>
+
+  <h2>
+    Задача 5. Вивести таблицю 3x3
+  </h2>
+  <script>
+    document.write('<table border="1px">')
+
+    let counter = 1
+
+    for (let rows = 1; rows <= 3; rows++) {
+      document.write(`<tr>`)
+      for (let columns = 1; columns <= 3; columns++) {
+        document.write(`<td>`)
+        document.write(`${counter++}`)
+        document.write(`</td>`)
+      }
+      document.write(`</tr>`)
+    }
+    document.write('</table>')
+  </script>
+
+  <h2>
+    Задача 6. Вивести 3 таблиці (по 3 рядки і 3 стовпці у кожній) за зразком
+  </h2>
+  <script>
+    counter = 1
+
+    for (let tables = 1; tables <= 3; tables++) {
+      document.write('<table border="1px" style="display: inline-block; margin-right: 10px;">')
+      for (let rows = 1; rows <= 3; rows++) {
+        document.write(`<tr>`)
+        for (let columns = 1; columns <= 3; columns++) {
+          document.write(`<td>`)
+          document.write(`${counter++}`)
+          document.write(`</td>`)
+        }
+        document.write(`</tr>`)
+      }
+      document.write('</table>')
+    }
+  </script>
+</body>
+
+</html>
