@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 3</title>
+</head>
+
+<body>
+  <script>
+    let limit = parseInt(prompt('Введіть висоту трикутника', '1'))
+    let charLenght = limit
+    let charIndex = 0
+
+    while (charIndex < limit) {
+      for (let i = 0; i < charLenght; i++) {
+        document.write("o")
+      }
+      charLenght--
+      charIndex++
+
+      document.write("<br>")
+    }
+  </script>
+</body>
+
+</html>

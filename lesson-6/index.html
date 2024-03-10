@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Lesson-6</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__container">
+				<h1 class="header__title">
+					Урок №6. Цикли продовження. (ну я і намудрив з цими трикутниками)
+				</h1>
+			</div>
+		</header>
+
+		<main class="page">
+			<div class="page__container">
+				<ol class="page__hw-list hw-list">
+					<li class="hw-list__item">
+						<a href="./task-0.html" class="hw-list__link">
+							Задача 0. Вивести на екран <br>
+							A B C D E <br>
+							B C D E F <br>
+							C D E F G <br>
+							D E F G H <br>
+							E F G H I
+						</a>
+					</li>
+					<li class="hw-list__item">
+						<a href="./task-1.html" class="hw-list__link">
+							Задача 1. Відобразити трикутник за допомогою символів «о» <br>
+							о<br>
+							оо<br>
+							ооо<br>
+							оооо<br>
+							ооооо<br>
+							оооооо<br>
+							ооооооо
+						</a>
+					</li>
+					<li class="hw-list__item">
+						<a href="./task-2.html" class="hw-list__link">
+							Задача 2. Відобразити трикутник за допомогою символів «о»<br>
+							<script>
+								limit = 7
+								spaceLimit = limit
+								charIndex = 1
+								while (charIndex <= limit) {
+									for (let indexSpace = 0; indexSpace < spaceLimit; indexSpace++) {
+										document.write(" ")
+									}
+									spaceLimit--
+
+									for (let index = 0; index < charIndex; index++) {
+										document.write('o')
+									}
+									charIndex++
+									document.write("<br>")
+								}
+							</script>
+						</a>
+					</li>
+					<li class="hw-list__item">
+						<a href="./task-3.html" class="hw-list__link">
+							Задача 3. Відобразити трикутник за допомогою символів «о»<br>
+							оооооооооооо<br>
+							ооооооооооо<br>
+							оооооооооо<br>
+							ооооооооо<br>
+							оооооооо<br>
+							…<br>
+							оо<br>
+							о<br>
+
+						</a>
+					</li>
+					<li class="hw-list__item">
+						<a href="./task-4.html" class="hw-list__link">
+							Задача 4. Відобразити трикутник за допомогою символів «о»<br>
+							<script>
+								let limit = 12
+								let charLenght = limit
+								let charIndex = 0
+								let spaceLenght = 0
+
+								while (charIndex < limit) {
+									for (let indexSpace = 0; indexSpace < spaceLenght; indexSpace++) {
+										document.write(' ')
+									}
+									spaceLenght++
+
+									for (let index = 0; index < charLenght; index++) {
+										document.write('o')
+									}
+									charLenght--
+									charIndex++
+									document.write("<br>")
+								}
+							</script>
+						</a>
+					</li>
+					<li class="hw-list__item">
+						<a href="./task-5.html" class="hw-list__link">
+							Задача 5. Побудувати ялинку
+						</a>
+					</li>
+					<li class="hw-list__item">
+						<a href="./task-6.html" class="hw-list__link">
+							Задача 6. Зобразити рівнобедрений трикутник із символів ^. Висоту задає користувач.
+							Наприклад, на екрані висота = 5.
+						</a>
+					</li>
+				</ol>
+			</div>
+		</main>
+
+		<footer class="footer">
+			<span></span>
+		</footer>
+	</div>
+	<script src="js/script.js"></script>
+</body>
+
+</html>

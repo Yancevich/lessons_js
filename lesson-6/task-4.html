@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 4</title>
+</head>
+
+<body>
+  <script>
+    let limit = 12
+    let charLenght = limit
+    let charIndex = 0
+    let spaceLenght = 0
+
+    while (charIndex < limit) {
+      for (let indexSpace = 0; indexSpace < spaceLenght; indexSpace++) {
+        document.write(' ')
+      }
+      spaceLenght++
+
+      for (let index = 0; index < charLenght; index++) {
+        document.write('o')
+      }
+      charLenght--
+      charIndex++
+      document.write("<br>")
+    }
+  </script>
+</body>
+
+</html>

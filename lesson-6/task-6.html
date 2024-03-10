@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 6</title>
+</head>
+
+<style>
+  body {
+    line-height: 0.8;
+    font-size: 40px;
+  }
+</style>
+
+<body>
+  <script>
+    let triangleHeight = parseInt(prompt("Введіть висоту трикутнка"))
+    let spaceLimit = triangleHeight
+    let charIndex = 1
+
+    while (charIndex <= triangleHeight) {
+      if (charIndex % 2 == 0) {
+        triangleHeight++
+        charIndex++
+        continue;
+      }
+
+      for (let indexSpace = 0; indexSpace < spaceLimit * 2; indexSpace++) {
+        document.write(" ")
+      }
+      spaceLimit--
+
+      for (let index = 0; index < charIndex; index++) {
+        document.write('^')
+      }
+      charIndex++
+
+      document.write("<br>")
+    }
+  </script>
+</body>
+
+</html>
