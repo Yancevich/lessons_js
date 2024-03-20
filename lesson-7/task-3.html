@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 3</title>
+</head>
+
+<body>
+  <script>
+    function sum(a, b, c, d) {
+      return a + b + c + d
+    }
+
+    function product(a, b, c, d) {
+      return a * b * c * d
+    }
+
+    function avg(a, b, c, d) {
+      return (a + b + c + d) / 4
+    }
+
+    function min(a, b, c, d, ...nums) {
+      let min = +Infinity
+      for (let index = 0; index < arguments.length; index++) {
+        if (min > arguments[index]) min = arguments[index]
+      }
+      return min
+    }
+
+    let firstNum = parseInt(prompt('Введіть перше число'))
+    let secondNum = parseInt(prompt('Введіть друге число'))
+    let thirdNum = parseInt(prompt('Введіть третє число'))
+    let fourthNum = parseInt(prompt('Введіть четверте число'))
+
+    let res1 = sum(firstNum, secondNum, thirdNum, fourthNum)
+    document.write(res1 + "<br>")
+
+    let res2 = product(firstNum, secondNum, thirdNum, fourthNum)
+    document.write(res2 + "<br>")
+
+    let res3 = avg(firstNum, secondNum, thirdNum, fourthNum)
+    document.write(res3 + "<br>")
+
+    let res4 = min(firstNum, secondNum, thirdNum, fourthNum)
+    document.write(res4)
+  </script>
+</body>
+
+</html>

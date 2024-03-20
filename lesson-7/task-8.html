@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 8</title>
+</head>
+
+
+
+<body>
+
+  <script>
+    function randomNum() {
+      return Math.floor(Math.random() * (4 - 1 + 1) + 1)
+    }
+
+    function createBanner(imgPath, href, title) {
+      document.write(`
+        <div>
+          <a href="${href}">
+            <img src="${imgPath}" alt="photo">
+          </a>
+        </div>
+        <h1>${title}</h1>
+        `)
+    }
+
+    createBanner(
+      "https://static-00.iconduck.com/assets.00/instagram-icon-512x512-ggh8x3cn.png",
+      "https://www.instagram.com/",
+      "Instagram"
+    )
+  </script>
+</body>
+
+</html>

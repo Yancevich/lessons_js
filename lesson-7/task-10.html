@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 10</title>
+</head>
+
+
+<body>
+  <script>
+    function getNumberOfPositiveTemperatures(...temperatures) {
+      let counter = 0
+
+      for (let index = 0; index < temperatures.length; index++) {
+        if (temperatures[index] > 0) counter++
+      }
+      return counter
+
+    }
+    function countAverageNumOfPositiveTemperatures(...temperatures) {
+      let numOfPositiveTemp = getNumberOfPositiveTemperatures(...temperatures)
+      let sum = 0
+
+      for (let j = 0; j < temperatures.length; j++) {
+        if (temperatures[j] > 0) sum += temperatures[j]
+      }
+      return sum / numOfPositiveTemp
+    }
+
+    let temperatures = [-1, 2, 10, 0, -2, -3, 5, -7, 8, 6];
+    let result = countAverageNumOfPositiveTemperatures(...temperatures)
+
+    document.write(`
+    ${temperatures}<br>
+    Середня температура додатніх показників: ${result} °C
+    `)
+  </script>
+</body>
+
+</html>

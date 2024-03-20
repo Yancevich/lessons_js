@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 6</title>
+</head>
+
+<style>
+  body {
+    line-height: 0.8;
+    font-size: 40px;
+  }
+</style>
+
+<body>
+  <script>
+    function createTable(rows, columns) {
+      document.write(`<table border="3px">`)
+      for (let i = 0; i < rows; i++) {
+        document.write("<tr>")
+        for (let j = 0; j < columns; j++) {
+          document.write("<td>0</td>")
+        }
+        document.write("</tr>")
+      }
+      document.write("</table>")
+    }
+
+    let rowsNum = parseInt(prompt('К-сть рядків'))
+    let columnsNum = parseInt(prompt('К-сть колонок'))
+
+    createTable(rowsNum, columnsNum)
+  </script>
+</body>
+
+</html>

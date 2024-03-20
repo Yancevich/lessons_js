@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 7</title>
+</head>
+
+<body>
+  <script>
+    function randomNum() {
+      return Math.floor(Math.random() * (4 - 1 + 1) + 1)
+    }
+
+    function showImg(pathNumber) {
+      // document.write(`<img src="img/image-${pathNumber}.jpg" alt="photo">`)
+
+      // другий варіант скоріш за все відповідає умові задачі (шляхи до зображень передаються у функцію)
+      let path = ""
+      switch (pathNumber) {
+        case 1:
+          path = "img/image-1.jpg"
+          break;
+
+        case 2:
+          path = "img/image-2.jpg"
+          break;
+
+        case 3:
+          path = "img/image-3.jpg"
+          break;
+
+        case 4:
+          path = "img/image-4.jpg"
+          break;
+
+        default:
+          path = ""
+          break;
+      }
+      document.write(`<img src="img/image-${pathNumber}.jpg" alt="photo">`)
+    }
+
+    showImg(randomNum())
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 4</title>
+</head>
+
+<body>
+  <script>
+    function getQtyEvenNum(a, b, c) {
+      let counter = 0
+      for (let index = 0; index < arguments.length; index++) {
+        if (arguments[index] % 2 == 0) counter++
+      }
+      return counter
+    }
+
+    function getQtyPositiveNum(a, b, c) {
+      let counter = 0
+      for (let index = 0; index < arguments.length; index++) {
+        if (arguments[index] > 0) counter++
+      }
+      return counter
+    }
+
+    function getQtyGreaterThan100(a, b, c) {
+      let counter = 0
+      for (let index = 0; index < arguments.length; index++) {
+        if (arguments[index] > 100) counter++
+      }
+      return counter
+    }
+
+    function getResults(firstNum, secondNum, thirdNum) {
+      return [getQtyEvenNum(a, b, c), getQtyPositiveNum(a, b, c), getQtyGreaterThan100(a, b, c)]
+    }
+
+    let firstNum = parseInt(prompt('Введіть перше число'))
+    let secondNum = parseInt(prompt('Введіть друге число'))
+    let thirdNum = parseInt(prompt('Введіть третє число'))
+
+    let result = getResults(firstNum, secondNum, thirdNum)
+
+    document.write(`
+    К-сть парних чисел: ${result[0]}<br>
+    К-сть додатних: ${result[1]}<br>
+    К-сть чисел більших за сто: ${result[2]}
+    `)
+
+  </script>
+</body>
+
+</html>

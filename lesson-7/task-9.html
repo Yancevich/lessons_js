@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 9</title>
+</head>
+
+<body>
+  <script>
+    function numberOfNegativeTemperatures(...temperatures) {
+      let counter = 0
+      for (let index = 0; index < temperatures.length; index++) {
+        if (temperatures[index] < 0) counter++
+      }
+      return counter
+    }
+
+    let temperatures = [-1, 2, 10, 0, -2, -3, 5, -7, 8, 6];
+
+    let result = numberOfNegativeTemperatures(...temperatures)
+    document.write(`
+    ${temperatures}<br>
+    К-сть відє'мних: ${result}
+    `)
+  </script>
+</body>
+
+</html>
