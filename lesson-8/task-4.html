@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 4</title>
+</head>
+
+<body>
+  <script>
+    let productsPrices = [1000, 25, 45]
+    let productsTitles = ["Phone", "bread", "coca-cola"]
+
+    function getAbleToBuyList(userMoney, productsPrices, productsTitles) {
+      let ableToBuyList = []
+      let indexAble = 0
+
+      for (let index = 0; index < productsPrices.length; index++) {
+        if (userMoney >= productsPrices[index]) {
+          ableToBuyList[indexAble] = productsTitles[index]
+          indexAble++
+        }
+      }
+      return ableToBuyList
+    }
+
+    let userMoney = parseFloat(prompt("Введіть кількість грошей", "200"))
+
+    let result = getAbleToBuyList(userMoney, productsPrices, productsTitles)
+
+    document.write(result)
+    console.log(result.length);
+  </script>
+</body>
+
+</html>

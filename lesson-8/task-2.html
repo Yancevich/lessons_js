@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 2</title>
+</head>
+
+<body>
+  <script>
+    let nameList = ["Олександр", "Іван", "Михайло", "Іван", "Андрій", "Василь", "Іван", "Петро", "Дмитро", "Іван", "Юрій", "Тарас", "Іван", "Богдан", "Сергій"]
+
+    function countNameQtyOfList(name, nameList) {
+      let counter = 0
+      for (let index = 0; index < nameList.length; index++) {
+        if (name === nameList[index]) counter++
+      }
+      return counter
+    }
+
+    console.log(countNameQtyOfList('Іван', nameList))
+  </script>
+</body>
+
+</html>

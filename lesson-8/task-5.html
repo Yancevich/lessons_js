@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 5</title>
+</head>
+
+<body>
+  <script>
+    // Задача 5. Дано одновимірний масив, у якому зберігається певна виграшна сума (елементи
+    // 					заповнюються випадковим чином значеннями від -500 до 500). Надаючи користувачу можливість
+    // 					вибирати номери елементів (поки він не відмовиться). Знаходити сумарний виграш.
+
+    function randomPositiveOrNegativeNumber(min = 0, max = 10) {   // функція яка генерує рандомне число в заданих межах зі знаком мінус або плюс
+      let number = Math.random()                                   // для майбутнього створення масиву від -500 до 500
+      min = Math.ceil(min);
+      max = Math.floor(max);
+
+      return number >= 0.5 ? Math.floor(Math.random() * (max - min + 1) + min) : -Math.floor(Math.random() * (max - min + 1) + min)
+    }
+
+    function createList(length = 5) {                              // Функція, що повертає масив із заданою довжиною
+      let list = new Array(length)                                 // заповненний рандомними значенями від -500 до 500 та 
+
+      for (let index = 0; index < list.length; index++) {
+        list[index] = randomPositiveOrNegativeNumber(0, 500)
+      }
+
+      return list
+    }
+
+    function chooseElements(list) {                                // Функція, що надає користувачу можливість вибирати елементи та
+      let confirmed                                                // повертає масив на основі вибраних користувачем елементів
+      let index
+      let choosedElementsList = []
+
+      do {
+        index = parseInt(prompt(`Введіть номер елемента від 0 до ${list.length - 1}`, "0"))
+        if (list[index] !== undefined) {
+          choosedElementsList.push(list[index])
+        }
+        confirmed = confirm("Продовжуєте?")
+      } while (confirmed)
+
+      return choosedElementsList
+    }
+
+    function getTotalWin(list) {                                    // функція, що повертає загальний вийграш приймаючи значення масиву
+      let sum = 0
+      for (let index = 0; index < list.length; index++) {
+        sum += list[index]
+      }
+      return sum
+    }
+
+
+    let length = parseInt(prompt('Введіть довжину масива'))
+    let moneyList = createList(length)
+    console.log(moneyList);
+
+    let choosedNums = chooseElements(moneyList)
+    document.write(`Вам випали ось такі значення: ${choosedNums} <br>`)
+
+    let totalWin = getTotalWin(choosedNums)
+    document.write(`Загальний вийграш: ${totalWin}`)
+
+
+  </script>
+</body>
+
+</html>

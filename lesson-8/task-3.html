@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 3</title>
+</head>
+
+<body>
+  <script>
+    // Задача 3. Дано послідовність номерів автомобілів.Підрахувати кількість номерів, які :
+    //       • починаються на букву «А»;
+    //         • перша і остання літери співпадають;
+    //           • складаються з більше ніш 5 символів;
+
+    let carNumberList = [
+      "AA1234BC",
+      "AX56HE",
+      "BH90CK",
+      "CA3456EC",
+      "EB7P",
+      "FX124HF",
+      "GT58IK",
+      "HH9012KP",
+      "IT34LM",
+      "KP7890MN",
+      "LT1234OP",
+      "ME56PR",
+      "OA9012QS",
+      "PT3RM",
+      "QE70SN"
+    ]
+
+
+    function countCarNumbersStartingWithLetter(letter, list) {
+      let counter = 0
+      for (let index = 0; index < list.length; index++) {
+        if (list[index][0] === letter) counter++
+      }
+      return counter
+    }
+
+    function countCarNumbersWithMatchingFirstAndLastLetter(list) {
+      let counter = 0
+      let lastLetter
+
+      for (let index = 0; index < list.length; index++) {
+        lastLetter = list[index][list[index].length - 1]
+        if (list[index][0] === lastLetter) counter++
+      }
+      return counter
+    }
+
+
+    function countCarNumbersLongerThanFiveCharacters(list) {
+      let counter = 0
+      for (let index = 0; index < list.length; index++) {
+        if (list[index].length > 5) counter++
+      }
+      return counter
+    }
+
+    let letter = "A"
+    let a = countCarNumbersStartingWithLetter(letter, carNumberList)
+    document.write(`К-сть номерів на букву "${letter}": ${a} <br>`)
+
+    let b = countCarNumbersWithMatchingFirstAndLastLetter(carNumberList)
+    document.write(`К-сть номерів, що починаються і закінчуються з тієї самої букви: ${b}<br>`);
+
+    let c = countCarNumbersLongerThanFiveCharacters(carNumberList)
+    document.write(`К-сть номерів, що складаються більше ніж 5 символів: ${c}<br>`)
+  </script>
+</body>
+
+</html>

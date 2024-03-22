@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 1</title>
+</head>
+
+<body>
+  <script>
+    // Задача 1. Дано масив, який містить оцінки з К предметів. Знайти середній бал і з’ясувати до
+    //  якої категорії він відноситься (відмінник, двійочник (має хоча би одну двійку), хорошист
+    // 	 (оцінки добре і відмінно), трійочник(є хоча би одна трійка)).
+
+
+    let scoreList = [2, 3, 4, 5, 3]
+
+    function getAvarageScore(scoreList) {
+      let sum = 0
+
+      for (let i = 0; i < scoreList.length; i++) {
+        sum += scoreList[i]
+      }
+      return sum / scoreList.length
+    }
+
+    function getMinScore(scoreList) {
+      let min = +Infinity
+
+      for (let i = 0; i < scoreList.length; i++) {
+        if (min > scoreList[i]) min = scoreList[i]
+      }
+      return min
+    }
+
+    function getCategory(scoreList) {
+      let minScore = getMinScore(scoreList)
+      let category = ""
+
+      switch (minScore) {
+        case 1:
+        case 2:
+          category = "Двійочник"
+          break
+        case 3:
+          category = "Трійочник"
+          break
+        case 4:
+          category = "Хорошист"
+          break
+        case 5:
+          category = "Відмінник"
+          break
+        default:
+          category = "err"
+          break
+      }
+      return category
+    }
+
+    let avarageScore = getAvarageScore(scoreList)
+    document.write("AVG: " + avarageScore + "<br>")
+
+    let category = getCategory(scoreList)
+    document.write(category)
+
+  </script>
+</body>
+
+</html>
