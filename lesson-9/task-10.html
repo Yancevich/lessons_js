@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 10</title>
+</head>
+
+
+<body>
+  <script>
+    // Дано масив цін у грн. Податок складає 20%. 
+    // Сформувати масив, який буде містити величину сплаченого податку у грн.
+
+    let prices = [200, 1500, 300, 600, 650, 800]
+
+    let taxes = prices.map(item =>
+      item * 0.2
+    )
+
+    document.write("Ціни: " + prices + "<br>")
+    document.write("ПДВ: " + taxes)
+
+
+  </script>
+</body>
+
+</html>

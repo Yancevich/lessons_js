@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 2</title>
+</head>
+
+<body>
+  <script>
+    //2. Користувач вводить кількість елементів. Створити масив, у якому перша половина заповнена 1 - цями, а друга заповнена 7 - ками.
+
+    const arrayLenght = parseInt(prompt('Введіть к-сть елементів масиву'))
+
+    let middlePosition = Math.round(arrayLenght / 2)
+
+    console.log(middlePosition);
+
+    let array = new Array(arrayLenght).fill(1, 0, middlePosition).fill(7, middlePosition, arrayLenght)
+
+    document.write(array)
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 8</title>
+</head>
+
+
+
+<body>
+
+  <script>
+    // 8. Дано масив номерів авто. 
+    // Сформувати новий масив тих, які починаються на «А»
+
+    let licensePlates = [
+      "AB-1234",
+      "CD-5678",
+      "EF-9012",
+      "GH-3456",
+      "IJ-7890",
+      "AL-2345",
+      "MN-6789",
+      "OP-0123",
+      "QR-4567",
+      "AT-8901"
+    ]
+    let newLicensePlates = []
+
+    licensePlates.forEach((item, index, baseArr) => {
+      if (item[0] === "A") {
+        newLicensePlates.push(item)
+      }
+    });
+
+    document.write(newLicensePlates)
+  </script>
+</body>
+
+</html>
