@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 4</title>
+</head>
+
+<body>
+  <script>
+    // 4. Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального
+    let priceHistoryOfSecurities = [5325, 959, 3002, 5678, 2000, 10000, 304, 252, 6758, 20]
+
+    let percentChangeFromMaxList = priceHistoryOfSecurities.reduce((prevNumber, price, index, baseArr) => {
+      let maxValue = Math.max(...baseArr)
+      let percentedNumber = price / maxValue // * 100
+
+      prevNumber.push(percentedNumber)
+
+      return prevNumber
+    }, [])
+
+    for (const item of percentChangeFromMaxList) {
+      document.write(item + "<br>")
+    }
+
+  </script>
+</body>
+
+</html>

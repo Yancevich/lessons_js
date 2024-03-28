@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 11</title>
+</head>
+
+
+<body>
+  <script>
+    // Знайти індекс першої ціни, що більше за 1000
+    let priceHistoryOfSecurities = [0, 959, 2, 5678, 2000, 10000, 304, 252, 6758, 20]
+
+    let indexOfFirstFoundValue = priceHistoryOfSecurities.findIndex(
+      el => el > 1000
+    )
+
+    document.write(indexOfFirstFoundValue)
+  </script>
+</body>
+
+</html>

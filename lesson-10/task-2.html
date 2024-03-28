@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 2</title>
+</head>
+
+<body>
+  <script>
+    //2. Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн.
+    let priceHistoryOfSecurities = [5325, 959, 3002, 5678, 2000, 10000, 304, 252, 6758, 20]
+
+    let indexOfPriceHistoryMoreThan1000 = priceHistoryOfSecurities.reduce((prevValue, el, index) => {
+      if (el > 1000) prevValue.push(index)
+      return prevValue
+    }, [])
+
+    document.write(priceHistoryOfSecurities + "<br>")
+    document.write(indexOfPriceHistoryMoreThan1000)
+  </script>
+</body>
+
+</html>

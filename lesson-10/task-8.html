@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 8</title>
+</head>
+
+
+
+<body>
+
+  <script>
+    // 8. Підрахувати кількість цін, що більше за 1000
+
+    let priceHistoryOfSecurities = [5325, 959, 3002, 5678, 2000, 10000, 304, 252, 6758, 20]
+
+    let pricesAbove1000Number = priceHistoryOfSecurities.reduce(
+      (counter, el) => el > 1000 ? counter + 1 : counter
+      , 0
+    )
+
+    document.write(pricesAbove1000Number)
+  </script>
+</body>
+
+</html>

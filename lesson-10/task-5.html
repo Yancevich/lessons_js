@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 5</title>
+</head>
+
+<body>
+  <script>
+    // Підрахувати кількість змін цін
+    let priceHistoryOfSecurities = [5325, 959, 3002, 5678, 2000, 2000, 10000, 304, 252, 6758, 20, 20]
+
+    let differentiatedPriceCount = priceHistoryOfSecurities.reduce(
+      (counter, el, index, baseArr) => (index > 0 && el != baseArr[index - 1]) ? counter + 1 : counter
+      , 0
+    )
+    document.write(priceHistoryOfSecurities + "<br>")
+    document.write(differentiatedPriceCount)
+  </script>
+</body>
+
+</html>
