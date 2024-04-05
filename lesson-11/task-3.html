@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 3</title>
+</head>
+
+<body>
+  <script>
+    // 3. Морський бій. Випадковим чином на двовимірному полі розміром 6*6 розташовується 5 кораблів.
+    // Користувач стріляє вказуючи координати. Гра продовжується поки не потоплено 
+    // усі кораблі або у користувача не закінчаться снаряди.
+
+    function generateArea(rowNum = 6, colNum = 6) {
+      let array = []
+      for (let rowIndex = 0; rowIndex < rowNum; rowIndex++) {
+        array[rowIndex] = new Array(colNum).fill(0)
+      }
+      return array
+    }
+
+    function randomNum(min, max) {
+      return Math.floor(Math.random() * (max - min) + min)
+    }
+
+    function setPositionForShip(array) {
+      let rowLenght = array.length
+      let colLenght = array[0].length
+
+      let rowIndex = randomNum(0, rowLenght)
+      let colIndex = randomNum(0, colLenght)
+
+      if (array[rowIndex][colIndex] === 0) {
+        array[rowIndex][colIndex] = 1
+      } else setPositionForShip(array)
+
+    }
+
+    function setPositions(array, shipNumbers) {
+      for (let index = 0; index < shipNumbers; index++) {
+        setPositionForShip(array)
+      }
+    }
+
+    function shoot(array) {
+      const rowIndex = parseInt(prompt("Виберіть рядок")) - 1
+      const colIndex = parseInt(prompt("Виберіть колонку")) - 1
+
+      if (array[rowIndex][colIndex] === 1) {
+        array[rowIndex][colIndex] = 0
+        alert('Ви влучили!')
+      } else alert('Ви не влучили')
+    }
+
+    function play() {
+      let isPlaying = true
+      let shellNumber = 15
+      let shipNumbers = 0
+      let area = generateArea(6, 6)
+      setPositions(area, 5)
+      alert("Welcome! Ігрове поле 6х6")
+
+      while (isPlaying) {
+        console.table(area);
+        shipNumbers = area.flat().reduce((sum, el) => el == 1 ? sum + 1 : sum)
+
+        alert(`К-сть кораблів: ${shipNumbers}\nЗалишилось снарядів: ${shellNumber}`)
+        shoot(area)
+        --shellNumber
+
+        if (shipNumbers === 0) {
+          alert('Вітаємо ви виграли')
+          is
+        }
+        if (shellNumber === 0) {
+          alert('Кінчились снаряди. Пощастить наступного разу!')
+          break
+        }
+
+        isPlaying = confirm("Продовжуєте?")
+      }
+    }
+
+    play()
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 1</title>
+</head>
+
+<body>
+  <script>
+    // Знайти суми елементів у вказаній області
+    function defaultFunc(arr, row, column, sum) {
+      return sum + arr[row][column]
+    }
+
+    function evenRow(arr, row, column, sum) {
+      if (row % 2 === 0) return sum
+      return sum + arr[row][column]
+    }
+
+    function oddColumn(arr, row, column, sum) {
+      if (column % 2 === 0) return sum + arr[row][column]
+      return sum
+    }
+
+    function evenOdd(arr, row, column, sum) {
+      if (row % 2 !== 0 && column % 2 === 0) sum += arr[row][column]
+      if (row % 2 === 0 && column % 2 !== 0) sum += arr[row][column]
+      return sum
+    }
+
+    function getSumElementInArea(
+      arr,
+      rowStart,
+      rowEnd,
+      columnStart,
+      columnEnd,
+      func = defaultFunc
+    ) {
+      let sum = 0;
+      for (let row = rowStart; row < rowEnd; row++) {
+        for (let column = columnStart; column < columnEnd; column++) {
+          sum = func(arr, row, column, sum)
+        }
+      }
+      return sum;
+    }
+
+    let array = [
+      [4, 2, 0, 1],
+      [2, 3, 0, 2],
+      [6, 3, 9, 0],
+      [1, 1, 4, 1],
+    ];
+
+    console.log(array);
+
+    let rowMiddle = Math.floor(array.length / 2);
+    let rowEnd = array.length;
+    let columnMiddle = Math.floor(array[0].length / 2);
+    let columnEnd = array[0].length;
+
+    // 1) номери рядків від 0 до половини, стовпці від 0 до половини
+    let res1 = getSumElementInArea(array, 0, rowMiddle, 0, columnMiddle);
+    document.write(res1 + "<br>");
+
+    // 2) номери рядків від 0 до половини, стовпці від половини до кінця
+    let res2 = getSumElementInArea(
+      array,
+      0,
+      rowMiddle,
+      columnMiddle,
+      columnEnd
+    );
+    document.write(res2 + "<br>");
+
+    // 3) номери рядків (від половини до кінця, стовпці від 0 до половини
+    let res3 = getSumElementInArea(array, rowMiddle, rowEnd, 0, columnMiddle)
+    document.write(res3 + "<br>")
+
+    // 4) номери рядків від половини до кінця , стовпці від половини до кінця
+    let res4 = getSumElementInArea(array, rowMiddle, rowEnd, columnMiddle, columnEnd)
+    document.write(res4 + "<br>")
+
+    // 5) Суму парних рядків
+    let res5 = getSumElementInArea(array, 0, rowEnd, 0, columnEnd, evenRow)
+    document.write(`Сума парних рядків: ${res5}<br>`)
+
+    // 6) суму непарних стовпців
+    let res6 = getSumElementInArea(array, 0, rowEnd, 0, columnEnd, oddColumn)
+    document.write(`Сума непарних стовпців: ${res6}<br>`)
+
+    // 7) У парних рядках – непарні стовпці, у непарних – парні.
+    let res7 = getSumElementInArea(array, 0, rowEnd, 0, columnEnd, evenOdd)
+    document.write(`Сума у парних рядках – непарні стовпці, у непарних – парні: ${res7}<br>`)
+
+  </script>
+</body>
+
+</html>
