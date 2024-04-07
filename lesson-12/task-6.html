@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 6</title>
+</head>
+
+<body>
+  <script>
+    // Задача 6. Дано масив імен.
+    // Застосовуючи відповідне сортування та бінарний пошук визначити, чи є у масиві ім’я довжиною 5 символів і під яким індексом.
+
+    let names = ['Olga', 'Victor', 'Anton', 'Stepan', 'Sergey', 'Pavlo', 'Inna', 'Igor', 'Ivan', 'Oleksiy', 'Artem', 'Valentine', 'Roma', 'Oleg']
+
+    for (let nameIndex = 1; nameIndex < names.length; nameIndex++) {
+      const currentElement = names[nameIndex]
+      const currentElementLenght = currentElement.length;
+      let sortedIndex = nameIndex - 1
+
+      while (sortedIndex >= 0 && names[sortedIndex].length > currentElementLenght) {
+        names[sortedIndex + 1] = names[sortedIndex]
+        sortedIndex--
+      }
+      names[sortedIndex + 1] = currentElement
+
+    }
+
+    function binarySearchByLenght(array, elementLenght) {
+      let start = 0
+      let end = array.length - 1
+      let iterations = 0
+
+      while (start <= end) {
+        const middle = Math.floor((start + end) / 2)
+        console.log(start, middle, end, array[middle]);
+
+        if (elementLenght === array[middle].length) return [true, middle]
+        if (elementLenght > array[middle].length) start = middle + 1
+        if (elementLenght < array[middle].length) end = middle - 1
+        iterations++
+        if (iterations === 100) break
+      }
+      return false
+    }
+    document.write(names);
+
+    let elementLenght = 5
+    let isElement = binarySearchByLenght(names, elementLenght)
+
+    if (isElement[0])
+      document.write(`<br>Ім'я довжиною ${elementLenght} є у масиві. Під індексом: ${isElement[1]}.`)
+  </script>
+</body>
+
+</html>

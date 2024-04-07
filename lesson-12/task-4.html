@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 4</title>
+</head>
+
+<body>
+  <script>
+
+    function showArr(array) {
+      document.write("[")
+      for (let k = 0; k < array.length; k++) {
+        document.write(`${array[k]}, `)
+      }
+      document.write("]<br>")
+    }
+
+
+    let array = [3, 5, 1, 4, 2]
+    document.write(`Початковий масив: ${array}<br>`)
+    do {
+      changed = false
+      showArr(array)
+      for (let i = 1; i < array.length; i++) {
+        if (array[i - 1] > array[i]) {
+          showArr(array)
+          let temp = array[i - 1]
+          array[i - 1] = array[i]
+          array[i] = temp
+          changed = true
+        }
+      }
+    } while (changed)
+
+    array = [3, 5, 1, 4, 2]
+    document.write(`<br>Початковий масив: ${array}<br>`)
+
+    let leftIndex = 0
+    let rightIndex = array.length - 1
+
+    while (leftIndex < rightIndex) {
+      for (let index = leftIndex; index < rightIndex; index++) {
+        if (array[index] > array[index + 1]) {
+          let temp = array[index + 1]
+          array[index + 1] = array[index]
+          array[index] = temp
+          showArr(array)
+        }
+      }
+      rightIndex--
+
+      for (let index = rightIndex; index > leftIndex; index--) {
+        if (array[index] < array[index - 1]) {
+          let temp = array[index - 1]
+          array[index - 1] = array[index]
+          array[index] = temp
+          showArr(array)
+        }
+      }
+      leftIndex++
+    }
+
+    array = [3, 5, 1, 4, 2]
+    document.write(`<br>Початковий масив: ${array}<br>`)
+
+    for (let k = 1; k < array.length; k++) {
+      const currentEl = array[k]
+      let sorted = k - 1
+
+      for (; sorted >= 0 && array[sorted] > currentEl; sorted--) {
+        array[sorted + 1] = array[sorted]
+        showArr(array)
+      }
+      array[sorted + 1] = currentEl
+      showArr(array)
+    }
+
+  </script>
+</body>
+
+</html>

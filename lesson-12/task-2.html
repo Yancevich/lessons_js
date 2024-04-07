@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 2</title>
+</head>
+
+<body>
+  <script>
+    // Задача 2. Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів та порівнянь чисел під час сортування змішуванням.
+    let array = [-52, 18, -7, 45, -81, -29, -76, 64, 92, -33, 57, -73, -86, 39, 25, 88, -98, 70, 19, 53, 32, 41, -47, 90, -34, -93, 11, -62, -48, 16]
+
+    let leftIndex = 0
+    let rightIndex = array.length - 1
+    let counter = 0
+    let iterations = 0
+    let compares = 0
+
+    while (leftIndex < rightIndex) {
+      iterations++
+      for (let index = leftIndex; index < rightIndex; index++) {
+        compares++
+        if (array[index] > array[index + 1]) {
+          let temp = array[index + 1]
+          array[index + 1] = array[index]
+          array[index] = temp
+          counter++
+        }
+      }
+      rightIndex--
+
+      for (let index = rightIndex; index > leftIndex; index--) {
+        compares++
+        if (array[index] < array[index - 1]) {
+          let temp = array[index - 1]
+          array[index - 1] = array[index]
+          array[index] = temp
+          counter++
+        }
+      }
+      leftIndex++
+    }
+
+    document.write(array)
+    document.write(`<br>К-сть ітерацій: ${iterations}`)
+    document.write(`<br>К-сть порівнянь: ${compares}`)
+    document.write(`<br>К-сть обмінів: ${counter}`)
+  </script>
+</body>
+
+</html>

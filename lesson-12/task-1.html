@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 1</title>
+</head>
+
+<body>
+  <script>
+    // Задача 1. Дано масив 30 випадкових цілих чисел.
+    // Підрахувати скільки було обмінів та порівнянь чисел під час сортування бульбашкою
+    let array = [-52, 18, -7, 45, -81, -29, -76, 64, 92, -33, 57, -73, -86, 39, 25, 88, -98, 70, 19, 53, 32, 41, -47, 90, -34, -93, 11, -62, -48, 16]
+
+    let changed
+    let counter = 0
+    let iterations = 0
+    let compares = 0
+
+    do {
+      iterations++
+      changed = false
+      for (let i = 1; i < array.length; i++) {
+        compares++
+        if (array[i - 1] > array[i]) {
+          let temp = array[i - 1]
+          array[i - 1] = array[i]
+          array[i] = temp
+          changed = true
+          counter++
+        }
+      }
+    } while (changed);
+
+    document.write(array)
+    document.write(`<br>К-сть ітерацій: ${iterations}`)
+    document.write(`<br>К-сть порівнянь: ${compares}`)
+    document.write(`<br>К-сть обмінів: ${counter}`)
+
+  </script>
+</body>
+
+</html>
