@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 3</title>
+</head>
+
+<body>
+
+  <style>
+    td {
+      padding: 8px 5px;
+    }
+  </style>
+
+  <script>
+    // Задача 3. Виведіть всі можливі наступні комбінації ходів користувачів у грі“Хрестики-нулики”, 
+    // починаючи з деякої заданої ситуації (тобто маємо двовимірний масив з елементами : 0 - нулик, Х - хрестик, пробіл - ще не зайнято, 
+    // і вам треба самостійно вивести всі можливі шляхи заповнення ще незаповнених клітинок (де пробіли). 
+    // Поки можна не підраховувати чи вже є 3 хрестики чи 3 нулики у рядок.
+
+
+    let list =
+      [
+        [0, 'X', ' '],
+        ['X', ' ', 0],
+        [' ', ' ', ' ']
+      ]
+
+    function generate(array = [], freePositions = array.flat(10).reduce((counter, el) => el === ' ' ? counter + 1 : counter, 0)) {
+      if (freePositions === 0) {
+        document.write('<table border=1px>')
+        for (const row of array) {
+          document.write('<tr>')
+          for (const column of row) {
+            document.write(`<td>${column}</td>`)
+          }
+          document.write('</tr>')
+        }
+        document.write('</table><br>')
+      } else {
+        for (let i = 0; i < array.length; i++) {
+          for (let j = 0; j < array[i].length; j++) {
+            if (array[i][j] === ' ') {
+              let copyArray = JSON.parse(JSON.stringify(array))
+              copyArray[i][j] = '<mark>0</mark>'
+              generate(copyArray, freePositions - 1)
+
+              let copyArray2 = JSON.parse(JSON.stringify(array))
+              copyArray2[i][j] = '<mark>X</mark>'
+              generate(copyArray2, freePositions - 1)
+            }
+          }
+        }
+      }
+    }
+
+    generate(list)
+  </script>
+</body>
+
+</html>

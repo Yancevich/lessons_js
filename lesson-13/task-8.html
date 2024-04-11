@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 8</title>
+</head>
+
+
+
+<body>
+
+  <script>
+    // 8. Задача 8. При старті питаємо у користувача чи хоче він читати новини. Якщо так, то одразу переходимо до сайту Ukr.Net, 
+    // якщо ні, то через 20 секунд самі переходимо на сайт ukr.net. Для цього через 20 секунд після відкриття треба виконати команду
+
+    confirm("Чи бажаєте читати новини?") ?
+      window.location.href = 'https://www.ukr.net/'
+      :
+      timeoutId = setTimeout(() => window.location.href = 'https://www.ukr.net/', 20 * 1000)
+
+  </script>
+</body>
+
+</html>

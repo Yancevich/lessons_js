@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 7</title>
+</head>
+
+<body>
+  <script>
+    // Задача 7. Тренажер додавання. 
+    // Кожні 10 секунд користувачу задають випадковий приклад з додавання двох цифр і робиться перевірка.
+
+    function getRandom(min = 0, max = 10) {
+      min = Math.ceil(min)
+      max = Math.floor(max)
+      return Math.floor(Math.random() * (max - min + 1) + min)
+    }
+
+    function randomExpression() {
+      let firstNum = getRandom()
+      let secondNum = getRandom()
+      let res = firstNum + secondNum
+      let userAnswer = parseInt(prompt(`${firstNum} + ${secondNum} = ?`))
+
+      return res === userAnswer
+    }
+
+    function generateExpressions() {
+      let isCorrect = randomExpression()
+      if (isCorrect) generateExpressions()
+      else {
+        setTimeout(generateExpressions, 10000)
+      }
+    }
+
+    generateExpressions()
+  </script>
+</body>
+
+</html>

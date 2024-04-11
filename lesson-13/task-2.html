@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 2</title>
+</head>
+
+<body>
+  <script>
+    // Задача 2. Дано масив імен спортсменів. Розробити програму для виведення усіх можливих
+    // результатів змагань (списки імен у відповідності до місць, які вони займуть).
+
+    let list = ['Anton', 'Igor', 'Stepan']
+    function generate(list, res) {
+      if (list.length === 0) {
+        document.write(`${res}<br>`)
+      } else {
+        for (let index = 0; index < list.length; index++) {
+          generate(list.filter((el) => el !== list[index]), [...res, list[index]])
+        }
+      }
+    }
+    generate(list, [])
+
+
+
+
+  </script>
+</body>
+
+</html>

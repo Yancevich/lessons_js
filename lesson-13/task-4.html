@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 4</title>
+</head>
+
+<body>
+  <script>
+
+    // Задача 4. Дано масив хлопців і дівчат вивести всі можливі комбінації для танців з хлопців і дівчат.
+
+    function generateListByGender(list, gender) {
+      let generatedList = []
+      gender.toLowerCase() // male || female
+      // let manNames --- може бути якийсь уже готовий список з усіма чоловічими іменами який можна передавати в filter
+
+      if (gender === 'male') generatedList = list.filter(
+        el => ['Віктор', 'Денис', 'Олексій', 'Сашко'].includes(el)
+      )
+
+      else if (gender === 'female') generatedList = list.filter(
+        el => !['Віктор', 'Денис', 'Олексій', 'Сашко'].includes(el)
+      )
+
+      return generatedList
+    }
+
+    function generate(list, male = generateListByGender(list, 'male')) {
+      let female = generateListByGender(list, 'female')
+      let result
+
+      while (female.length !== 0) {
+        result = [].concat(male[0], female[0])
+        female = female.slice(1)
+        document.write(`${result}<br>`)
+      }
+      if (male.length === 1) return
+      else {
+        let copyMale = JSON.parse(JSON.stringify(male))
+        generate(list, copyMale.slice(1))
+      }
+    }
+
+    let people = ['Даша', 'Віктор', 'Денис', 'Ольга', 'Олексій', 'Христина', 'Сашко']
+    generate(people)
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 1</title>
+</head>
+
+<body>
+  <script>
+    // Задача 1. Генерація всіх підмножин: Реалізуйте рекурсивну функцію, яка генерує всі можливі
+    // підмножини заданого масиву. Наприклад, для масиву [1, 2, 3] можливі підмножини: [], [1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3].
+
+    function generate(list, res) {
+      if (list.length === 0) document.write(`[${res}]<br>`)
+      else {
+        generate(list.slice(1), [...res])
+        generate(list.slice(1), [...res, list[0]])
+      }
+    }
+
+    let arr = [1, 2, 3]
+    generate(arr, [])
+
+  </script>
+</body>
+
+</html>

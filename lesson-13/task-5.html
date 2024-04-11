@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 5</title>
+</head>
+
+<body>
+  <script>
+    // Задача 5. З використанням замикань розробити ітератор, тобто функцію, 
+    // що буде поступово за окремими викликами видавати по одне значення від заданого мінімального до заданого максимального.
+    // Якщо значення досягне максимального, то наступним буде мінімальне значення. З використанням цієї функції реалізувати перебір номерів місяців
+
+    function cycledIterator(min, max) {
+      let iterator = min - 1
+
+      function cycle() {
+        iterator = (iterator % max) + 1
+        return iterator
+      }
+
+      return cycle
+    }
+
+    let i = cycledIterator(1, 12)
+
+    for (let index = 0; index < 12; index++) {
+      switch (i()) {
+        case 1:
+          document.write('Січень<br>');
+          break;
+        case 2:
+          document.write('Лютий<br>');
+          break;
+        case 3:
+          document.write('Березень<br>');
+          break;
+        case 4:
+          document.write('Квітень<br>');
+          break;
+        case 5:
+          document.write('Травень<br>');
+          break;
+        case 6:
+          document.write('Червень<br>');
+          break;
+        case 7:
+          document.write('Липень<br>');
+          break;
+        case 8:
+          document.write('Серпень<br>');
+          break;
+        case 9:
+          document.write('Вересень<br>');
+          break;
+        case 10:
+          document.write('Жовтень<br>');
+          break;
+        case 11:
+          document.write('Листопад<br>');
+          break;
+        case 12:
+          document.write('Грудень<br>');
+          break;
+        default:
+          document.write('Нема такого місяця<br>');
+          break;
+      }
+    }
+  </script>
+</body>
+
+</html>
