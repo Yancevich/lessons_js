@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 1</title>
+</head>
+
+<body>
+  <script>
+    // Задача 1. Описати масив об’єктів – сайтів розроблених компанією з такими властивостями
+    // ----- Властивості------
+    // назва компанії на час розробки(назву періодично змінюють)
+    // власник компанії
+    // споснсори(масив спонсорів)
+    //       * прізвище спонсора
+    //       * ім’я  спонсора
+    //       * сума вкладень спонсора
+    // рік випуску
+    // вартість сайту
+
+    let websites = [
+      {
+        webSiteName: 'Travels',
+        owner: 'Travels Group',
+        sponsors: [
+          {
+            sponsorSecondName: 'Grey',
+            sponsorFirstName: 'David',
+            sponsorsInvestments: 30_000
+          },
+
+          {
+            sponsorSecondName: 'Maksimov',
+            sponsorFirstName: 'Maksim',
+            sponsorsInvestments: 10_000
+          },
+
+          {
+            sponsorSecondName: 'Aleksandrov',
+            sponsorFirstName: 'Aleks',
+            sponsorsInvestments: 80_000
+          },
+        ],
+        year: 2008,
+        websiteCost: 140_000
+      },
+
+      {
+        webSiteName: 'Cars',
+        owner: 'Aleks',
+        sponsors: [
+          {
+            sponsorSecondName: 'Aleksanrov',
+            sponsorFirstName: 'Aleks',
+            sponsorsInvestments: 4_000
+          },
+          {
+            sponsorSecondName: 'Dima',
+            sponsorFirstName: 'Shevchenko',
+            sponsorsInvestments: 3_000
+          },
+          {
+            sponsorSecondName: 'Smith',
+            sponsorFirstName: 'Sam',
+            sponsorsInvestments: 2_000
+          },
+        ],
+        year: 2002,
+        websiteCost: 8_000
+      },
+
+      {
+        webSiteName: 'Journey',
+        owner: 'Victor',
+        sponsors: [
+          {
+            sponsorSecondName: 'Angelo',
+            sponsorFirstName: 'Mike',
+            sponsorsInvestments: 10_000
+          },
+
+          {
+            sponsorSecondName: 'Antonov',
+            sponsorFirstName: 'Anton',
+            sponsorsInvestments: 5_000
+          },
+        ],
+        year: 2010,
+        websiteCost: 30_000
+      },
+    ]
+
+    //     Знайти:
+    //     1) загальну вартість усіх сайтів
+    let totalCost = websites.reduce(
+      (sum, website) => website.websiteCost + sum, 0
+    )
+    document.write(`1) Загальна вартість усіх сайтів: ${totalCost}<br>`)
+
+    //     2) кількість сайтів, що було зроблено між 2000 та 2009 рр.
+    let websiteNumFrom2000to2009 = websites.reduce(
+      (counter, website) => 2000 <= website.year && website.year <= 2009 ? counter + 1 : counter
+      , 0
+    )
+    document.write(`2) Кількість сайтів, що було зроблено між 2000 та 2009 рр.: ${websiteNumFrom2000to2009}<br>`)
+
+    //     3) кількість сайтів, де сума спонсорських вкладень була більшою за 100000
+    let websiteNumWhereInvestmentsGreater100000 = websites.reduce(
+      (counter, website) => website.sponsors.reduce(
+        (sum, sponsor) => sponsor.sponsorsInvestments + sum, 0
+      ) > 100000 ? counter + 1 : counter
+      , 0
+    )
+    document.write(`3) Кількість сайтів, де сума спонсорських вкладень була більшою за 100000: ${websiteNumWhereInvestmentsGreater100000}<br>`)
+
+    // 4) створити загальний список усіх спонсорів(поки можуть повторюватись, просто зібрати усі у масив)
+
+    // let listOfSponsors = websites.reduce(
+    //   (sponsors, website) => [...sponsors, website.sponsors.reduce(
+    //     (sponsors, sponsor) => {
+    //       sponsors.push(`${sponsor.sponsorSecondName} ${sponsor.sponsorFirstName}`)
+    //       return sponsors
+    //     }, [])], []).flat()
+
+    let listOfSponsors = websites.reduce(
+      (el, website) => {
+        el.push(website.sponsors.reduce(
+          (sponsors, sponsor) => {
+            sponsors.push(`${sponsor.sponsorSecondName} ${sponsor.sponsorFirstName}`)
+            return sponsors
+          }, []
+        ))
+        return el.flat()
+      }, []
+    )
+
+    document.write(`4) Створити загальний список усіх спонсорів(поки можуть повторюватись, просто зібрати усі у масив): <br> ${listOfSponsors}`)
+    console.log(listOfSponsors);
+
+    //     5) знайти рік, коли прибуток був найбільшим
+
+    let maxProfit = -Infinity
+    let maxYear
+
+    for (const website of websites) {
+      if (website.websiteCost > maxProfit) {
+        maxProfit = website.websiteCost
+        maxYear = website.year
+      }
+    }
+
+    document.write(`<br>5) Знайти рік, коли прибуток був найбільшим: ${maxYear} рік`)
+
+
+    // 6) упорядкувати список за спаданням прибутку
+
+    let copyWebsites = JSON.parse(JSON.stringify(websites))
+
+    for (let k = 1; k < copyWebsites.length; k++) {
+      const currentElement = copyWebsites[k];
+      sortedIndex = k - 1
+
+      while (sortedIndex >= 0 && copyWebsites[sortedIndex].websiteCost < currentElement.websiteCost) {
+        copyWebsites[sortedIndex + 1] = copyWebsites[sortedIndex]
+        sortedIndex--
+      }
+      copyWebsites[sortedIndex + 1] = currentElement
+    }
+
+    document.write(`<br>6) упорядкувати список за спаданням прибутку(виведено у консоль)`)
+    console.log("6) упорядкувати список за спаданням прибутку");
+    console.table(copyWebsites);
+
+    // 7) Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000
+    document.write('<br>7) Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000(консоль)');
+    console.log('7) Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000');
+    let listLess10000 = websites.filter(
+      (website) => {
+        let resList = []
+        if (website.websiteCost < 10000) {
+          return resList.push(website.websiteCost)
+        }
+      }
+    )
+
+    console.log('Менше 10000');
+    console.table(listLess10000);
+
+    let listMore10000 = websites.filter(
+      (website) => {
+        let resList = []
+        if (website.websiteCost > 10000) {
+          return resList.push(website.websiteCost)
+        }
+      }
+    )
+
+    console.log('Більше 10000');
+    console.table(listMore10000);
+
+
+  </script>
+</body>
+
+</html>

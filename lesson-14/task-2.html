@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 2</title>
+</head>
+
+<body>
+  <script>
+    // Задача 2. Розробити функцію, у яку передають об’єкт (день, місяць, рік). Визначити, який буде рік через N місяців.
+
+    function determineYear({ month, year }, n) {
+      let newMonth = month + n
+      let newYear = year + Math.floor((newMonth - 1) / 12)
+      return newYear
+    }
+
+    let date = {
+      day: 5,
+      month: 9,
+      year: 2024
+    }
+
+    let n = 16
+    let res = determineYear(date, n)
+
+    document.write(`Old year: ${date.year}<br> New determined year which will be in ${n} month: ${res}`)
+
+  </script>
+</body>
+
+</html>
