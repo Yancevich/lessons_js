@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 5</title>
+</head>
+
+<body>
+  <script>
+    //     Задача 5. Розробити клас «Керівник танців»
+    //     Поля
+    //        Масив імен хлопців
+    //        Масив імен дівчат
+    //     Методи
+    //        Метод випадкового вибору імені хлопця
+    //        Метод випадкового вибору імені дівчини
+    //        Метод виведення пари для танців
+    //        Метод run , який ініціює через кожні 5 секунд виведення нової пари для танців
+
+
+    class DanceHead {
+      constructor(arrayOfMen, arrayOfWomen) {
+        this.men = arrayOfMen
+        this.women = arrayOfWomen
+      }
+
+      randomChoosePerson(array) {
+        const max = array.length
+        const randomNum = Math.floor(Math.random() * max)
+        return array[randomNum]
+      }
+
+      randomChooseMan() {
+        return this.randomChoosePerson(this.men)
+      }
+
+      randomChooseWoman() {
+        return this.randomChoosePerson(this.women)
+      }
+
+      showPair() {
+        const man = this.randomChooseMan()
+        const woman = this.randomChooseWoman()
+        document.write(`Пара ${man} і ${woman}<br>`)
+      }
+
+      run() {
+        setInterval(() => this.showPair(), 5000)
+      }
+    }
+
+    let arrayOfMen = ['John', 'Alex', 'Michael', 'David', 'Robert']
+    let arrayOfWomen = ['Sarah', 'Jessica', 'Emily', 'Emma', 'Sophia']
+
+
+    let test = new DanceHead(arrayOfMen, arrayOfWomen)
+
+    test.run()
+
+  </script>
+</body>
+
+</html>

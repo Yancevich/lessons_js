@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 0</title>
+</head>
+
+<body>
+  <script>
+    // Задача 0. Дано два об’єкта. Обидва містять масив цілих чисел. При цьому у одному з них є
+    // функція знаходження суми, а у іншому – функція для знаходження добутку тих, які знаходяться
+    // між заданими мінімальним і максимальних значенням.
+    // Використати обидва методи стосовно обидвох об’єктів (використати call, apply)
+
+    let obj1 = {
+      array: [2, 5, 3, 5, 1],
+      sum: function () {
+        return this.array.reduce(
+          (sum, el) => sum + el, 0
+        )
+      }
+    }
+
+    let obj2 = {
+      array: [10, 5, 3, 2, 1],
+      product: function (min, max) {
+        return this.array.reduce(
+          (product, el) => min <= el && el <= max ? product * el : product, 1
+        )
+      }
+    }
+    document.write(`Задача 0.<br><br>`)
+    document.write(`Добуток першого об'єкту: ${obj2.product.call(obj1, 3, 6)}<br>`)
+    document.write(`Сума другого об'єкту: ${obj1.sum.apply(obj2)}<br>`)
+
+  </script>
+</body>
+
+</html>

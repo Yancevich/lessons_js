@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 4</title>
+</head>
+
+<body>
+  <style>
+    img {
+      width: 100px;
+    }
+  </style>
+
+  <script>
+    // Задача 4. Розробити клас Baner
+    // Поля
+    //     Масив об’єктів ( графічних зображень та посилань на сайти)
+    // методи
+    //     Метод випадкового вибору об’єкта (графічного зображення та посилання)
+    //     Метод виведення випадкового банера
+
+    class Baner {
+      constructor(bannersOfObj) {
+        this.banners = bannersOfObj
+      }
+
+      randomChoose() {
+        let max = this.banners.length
+        let randomNum = Math.floor(Math.random() * max)
+        return this.banners[randomNum]
+      }
+
+      showChoose() {
+        let choose = this.randomChoose()
+        document.write(`
+          <img src="${choose.src}" alt="banner"><br>
+          <a href="${choose.href}">${choose.href}</a>
+        `)
+      }
+    }
+
+    let list = [
+      {
+        src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1200px-Instagram_logo_2022.svg.png',
+        href: 'https://www.instagram.com/'
+      },
+
+      {
+        src: 'https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg',
+        href: 'https://www.facebook.com/'
+      }
+    ]
+
+    let banners = new Baner(list)
+
+    let choose = banners.randomChoose()
+    banners.showChoose(choose)
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 2</title>
+</head>
+
+<body>
+  <script>
+    //Задача 2. Створити об’єкт «Авто». 
+    //     Поля(властивості)
+    //        Марка
+    //        Розмір бака
+    //        Кількість наявних літрів
+    //        Кількість місць
+    //        Кількість пасажирів
+    //     Методи(дії)
+    //        Заправка на вказану кількість літрів
+    //        Виведення кількості пасажирів
+    //        Додавання пасажирів
+    //        Висадка пасажирів
+
+    let car = {
+      brand: 'BMW',
+      tankSize: 50,
+      availbleLitersNum: 20,
+      seatsNum: 5,
+      passengersNum: 3,
+
+      refueling: function (liters) {
+        this.availbleLitersNum + liters > this.tankSize ?
+          document.write(`<br>Неможливо заправити, адже в бак вміщається не більше ${this.tankSize}л.`)
+          :
+          this.availbleLitersNum += liters
+      },
+
+      showPassengersNum: function () {
+        document.write(`<br>К-сть пасажирів: ${this.passengersNum}`)
+      },
+
+      addPassanger: function () {
+        this.passengersNum++
+      },
+
+      passangerLanding: function () {
+        this.passengersNum = 0
+      }
+    }
+
+    car.refueling(20)
+    document.write(`К-сть наявних літрів: ${car.availbleLitersNum}`)
+    car.showPassengersNum()
+
+    car.addPassanger()
+    car.showPassengersNum()
+
+    car.passangerLanding()
+    car.showPassengersNum()
+  </script>
+</body>
+
+</html>
