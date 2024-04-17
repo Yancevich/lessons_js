@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>task 2</title>
+</head>
+
+<body>
+  <script>
+    // Задача 2. Створити клас TMoney для роботи з грошовими сумами. 
+    // Сума повинна зберігатися у вигляді доларового еквіваленту. 
+    // Реалізувати методи додавання/вилучення грошової маси, вказуючи необхідну суму у гривнях, 
+    // та визначення курсу долара, при якому сума у гривнях збільшиться на 100. Курс долара зберігати в окремому полі. 
+
+    class TMoney {
+      #money
+      #exchangeRate
+
+      constructor(initMoney) {
+        this.Money = initMoney
+        this.#exchangeRate = 38.4
+      }
+
+      get Money() {
+        return this.#money
+      }
+
+      set Money(val) {
+        if (val >= 0) this.#money = val
+        else throw new Error('Невірне значення')
+      }
+
+      get ExchangeRate() {
+        return this.#exchangeRate
+      }
+
+      addMoney(val) {
+        const res = val / this.#exchangeRate
+        this.Money += res
+
+        document.write(`<br>Додано ${val} грн. = ${res}$<br><br>`)
+      }
+
+      withdrawal(val) {
+        const res = val / this.#exchangeRate
+        this.Money -= res
+
+        document.write(`<br>Знято ${val} грн. = ${res}$<br><br>`)
+      }
+
+      toString() {
+        return `На балансі: ${this.#money}$<br> Курс долару: ${this.#exchangeRate} грн.<br>`
+      }
+    }
+
+    let test = new TMoney(100)
+    document.write(test)
+    test.addMoney(100)
+    document.write(test)
+    test.withdrawal(3940)
+    document.write(test)
+
+
+  </script>
+</body>
+
+</html>

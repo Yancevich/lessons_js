@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task 1</title>
+  </head>
+
+  <body>
+    <script>
+      // Задача 1. Створити клас TDate для роботи із датами у форматі “день.місяць.рік”. Дата представляється структурою із трьома полями.
+      // Реалізувати методи збільшення/зменшення дати на певну кількість днів, місяців чи років.
+      // Введення та виведення дати реалізувати за допомогою методу toString.
+
+      class TDate {
+        #day
+        #month
+        #year
+
+        constructor(day, month, year) {
+          this.Day = day
+          this.Month = month
+          this.Year = year
+        }
+
+        get Day() {
+          return this.#day
+        }
+
+        set Day(day) {
+          if (day <= 0 || day > 31 || typeof day !== 'number')
+            throw new Error(`Некоректний день`)
+          this.#day = day
+        }
+
+        get Month() {
+          return this.#day
+        }
+
+        set Month(month) {
+          if (month <= 0 || month > 12 || typeof month !== 'number')
+            throw new Error(`Некоректний місяць`)
+          this.#month = month
+        }
+
+        get Year() {
+          return this.#year
+        }
+
+        set Year(year) {
+          if (year < 0 || typeof year !== 'number')
+            throw new Error(`Некоректний рік`)
+          this.#year = year
+        }
+
+        toString() {
+          return `${this.#day}.${this.#month}.${this.#year}`
+        }
+
+        // Чесно я намагався, не можу продумати як врахувати високосний рік, коли доходить до лютого, то некоректно працює метод
+        // і взагалі вже заплутався написав багато лишнього і рекурсію використав, що небажано, коротше кажучи що зміг збагнути тей зробив :(
+        correctDate() {
+          let daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+          if (this.isLeap()) daysInMonth[1] = 29
+          else daysInMonth[1] = 28
+
+          if (this.#month > 12) {
+            this.#month -= 12
+            this.#year++
+            this.correctDate()
+          }
+
+          if (this.#month < 1) {
+            this.#month += 12
+            this.#year--
+            this.correctDate()
+          }
+
+          if (this.#day > daysInMonth[this.#month - 1]) {
+            if (this.#month - 1 === 2)
+              this.#day -= daysInMonth[this.#month - 1] + 2
+            else this.#day -= daysInMonth[this.#month - 1]
+            this.#month++
+            this.correctDate()
+          }
+
+          if (this.#day < 1) {
+            if (this.#month - 1 === 2)
+              this.#day -= daysInMonth[this.#month - 1] - 2
+            else this.#day += daysInMonth[this.#month - 1]
+            this.#month--
+            this.correctDate()
+          }
+        }
+
+        isLeap() {
+          return (
+            this.#year % 400 === 0 ||
+            (this.#year % 4 === 0 && this.#year % 100 != 0)
+          )
+        }
+
+        increaseDay(val) {
+          this.#day += val
+          this.correctDate()
+        }
+
+        decreaseDay(val) {
+          this.#day -= val
+          this.correctDate()
+        }
+
+        increaseMonth(val) {
+          this.#month += val
+          this.correctDate()
+        }
+
+        decreaseMonth(val) {
+          this.#month -= val
+          this.correctDate()
+        }
+
+        increaseYear(val) {
+          this.#year += val
+          this.correctDate()
+        }
+
+        decreaseYear(val) {
+          this.#year -= val
+          this.correctDate()
+        }
+      }
+      // let daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+      let obj = new TDate(31, 12, 1999)
+      document.write(obj + '<br>')
+      obj.increaseDay(60)
+      document.write(obj)
+      console.log(obj.isLeap())
+    </script>
+  </body>
+</html>

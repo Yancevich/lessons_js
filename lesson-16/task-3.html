@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task 3</title>
+  </head>
+
+  <body>
+    <script>
+      //     Задача 3. Об’єкт “Фірма” (використати члени-класи)
+      //     поля
+      //        назва фірми;
+      //        дата заснування (рік, місяць);
+      //        послуги (назва послуги, вартість, термін виконання);
+      //        адреси філіалів (країна, місто, вулиця, номер будинку);
+      //     методи
+      //        визначення кількості років існування фірми;
+      //        виведення всіх філіалів фірми у вказаному місті;
+      //        виведення на екран послуг, що можуть бути виконані за вказану суму грошей та вказаний термін часу;
+
+      class Foundation {
+        #year
+        #month
+        constructor({ year, month }) {
+          this.year = year
+          this.month = month
+        }
+
+        get year() {
+          return this.#year
+        }
+
+        set year(val) {
+          if (val < 0 || val > new Date().getFullYear())
+            throw new Error('incorrect year')
+          this.#year = val
+        }
+
+        get month() {
+          return this.#month
+        }
+
+        set month(val) {
+          if (val < 1 || val > 12) throw new Error('incorrect month')
+          this.#month = val
+        }
+
+        toString() {
+          return `Foundation date:<br> year: ${this.#year} - month: ${
+            this.#month
+          }<br>`
+        }
+        // визначення кількості років існування фірми;
+        getYearsOfExistence() {
+          const date = new Date()
+          const currentYear = date.getFullYear()
+          const currentMonth = date.getMonth() + 1
+
+          if (currentMonth - this.#month >= 0) return currentYear - this.#year
+          else return currentYear - this.#year - 1
+        }
+      }
+
+      //  послуги (назва послуги, вартість, термін виконання);
+      class Service {
+        #cost
+        #duration
+        constructor({ title, cost, duration }) {
+          this.title = title
+          this.cost = cost
+          this.duration = duration
+        }
+
+        get cost() {
+          return this.#cost
+        }
+
+        set cost(val) {
+          if (val <= 0) throw new Error('incorrect cost')
+          this.#cost = val
+        }
+
+        get duration() {
+          return this.#duration
+        }
+
+        set duration(val) {
+          if (val <= 0) throw new Error('incorrect deadline')
+          this.#duration = val
+        }
+
+        toString() {
+          return `Service ${this.title}<br> cost: ${this.#cost} - duration: ${
+            this.#duration
+          } days<br>`
+        }
+      }
+
+      // адреси філіалів (країна, місто, вулиця, номер будинку);
+      class Branch {
+        #houseNumber
+        constructor({ country, city, street, houseNumber }) {
+          this.country = country
+          this.city = city
+          this.street = street
+          this.houseNumber = houseNumber
+        }
+
+        get houseNumber() {
+          return this.#houseNumber
+        }
+
+        set houseNumber(val) {
+          if (val < 0) throw new Error('incorrect house number')
+          this.#houseNumber = val
+        }
+      }
+
+      class Firm {
+        constructor(
+          title = '',
+          foundation = new Foundation(),
+          services = [],
+          branches = []
+        ) {
+          this.title = title
+          this.foundation = foundation
+          this.services = services
+          this.branches = branches
+        }
+
+        // Методи:
+        // визначення кількості років існування фірми; можливо тут треба було писати
+        getYearsOfExistence() {
+          const date = new Date()
+          const currentYear = date.getFullYear()
+          const currentMonth = date.getMonth() + 1
+
+          if (currentMonth - this.foundation.month >= 0)
+            return currentYear - this.foundation.year
+          else if (currentYear - this.foundation.year - 1 >= 0) {
+            return currentYear - this.foundation.year - 1
+          } else return 0
+        }
+
+        // виведення всіх філіалів фірми у вказаному місті;
+        showBranchesByCity(city = 'Kyiv') {
+          let filteredList = this.branches.filter(
+            (branch) => branch.city === city
+          )
+
+          let counter = 0
+          for (const branch of filteredList) {
+            document.write(`--Філіал-- ${++counter} <br>
+            Країна: ${branch.country}<br>
+            Місто: ${branch.city}<br>
+            Вулиця: ${branch.street}<br>
+            Номер будинку: ${branch.houseNumber}<br><br>`)
+          }
+        }
+
+        // виведення на екран послуг, що можуть бути виконані за вказану суму грошей та вказаний термін часу;
+        showServicesByCostAndDuration(amountOfMoney, duration) {
+          let filteredList = this.services.filter(
+            (service) =>
+              amountOfMoney >= service.cost && duration >= service.duration
+          )
+
+          let counter = 0
+          for (const service of filteredList) {
+            document.write(`--Послуга-- ${++counter} <br>
+                Назва послуги: ${service.title}<br>
+                Ціна послуги: ${service.cost}$<br>
+                Термін виконання: ${service.duration}<br><br>`)
+          }
+        }
+      }
+
+      let firm = new Firm(
+        'SuperITCompany',
+        new Foundation({ year: 2023, month: 5 }),
+        [
+          new Service({
+            title: 'Create Web Site',
+            cost: 3000,
+            duration: 90,
+          }),
+          new Service({
+            title: 'Create Landing Page',
+            cost: 1000,
+            duration: 15,
+          }),
+        ],
+        [
+          new Branch({
+            country: 'Ukraine',
+            city: 'Kyiv',
+            street: 'Хрещатик',
+            houseNumber: '2',
+          }),
+          new Branch({
+            country: 'Ukraine',
+            city: 'Lviv',
+            street: 'Тараса Шевченка',
+            houseNumber: '21',
+          }),
+          new Branch({
+            country: 'Ukraine',
+            city: 'Lviv',
+            street: 'Лесі Українки',
+            houseNumber: '55',
+          }),
+        ]
+      )
+
+      document.write(
+        `К-сть років існування: ${firm.getYearsOfExistence()}<br><br>`
+      )
+
+      firm.showServicesByCostAndDuration(1000, 90)
+      firm.showBranchesByCity('Lviv')
+
+      // Це стара версія суперкласу :)
+      //     Задача 3. Об’єкт “Фірма” (використати члени-класи)
+      //     поля
+      //        назва фірми;
+      //        дата заснування (рік, місяць);
+      //        послуги (назва послуги, вартість, термін виконання);
+      //        адреси філіалів (країна, місто, вулиця, номер будинку);
+      //     методи
+      //        визначення кількості років існування фірми;
+      //        виведення всіх філіалів фірми у вказаному місті;
+      //        виведення на екран послуг, що можуть бути виконані за вказану суму грошей та вказаний термін часу;
+
+      // class Firm {
+      //   #foundationDate
+      //   #services
+      //   #addressesOfBranches
+
+      //   constructor(
+      //     initName,
+      //     initFoundationDate = {
+      //       year,
+      //       month,
+      //     },
+      //     initServices = [],
+      //     initAddressesOfBranches = []
+      //   ) {
+      //     this.name = initName
+      //     this.FoundationDate = initFoundationDate
+      //     this.Services = initServices
+      //     this.Branches = initAddressesOfBranches
+      //   }
+
+      //   get FoundationDate() {
+      //     return this.#foundationDate
+      //   }
+
+      //   set FoundationDate(date) {
+      //     const { year, month } = date
+      //     if (year < 0 || year > 2024) {
+      //       throw new Error('incorrect year')
+      //     }
+      //     if (month < 1 || month > 12) {
+      //       throw new Error('incorrect month')
+      //     }
+      //     this.#foundationDate = date
+      //   }
+
+      //   get Services() {
+      //     return this.#services
+      //   }
+
+      //   set Services(list) {
+      //     list.forEach((service) => {
+      //       if (service.cost <= 0) {
+      //         throw new Error('incorrect cost')
+      //       }
+      //       if (service.deadLine <= 0) {
+      //         throw new Error('incorrect deadline')
+      //       }
+      //     })
+      //     this.#services = list
+      //   }
+
+      //   get Branches() {
+      //     return this.#addressesOfBranches
+      //   }
+
+      //   set Branches(list) {
+      //     list.forEach((address) => {
+      //       if (address.houseNumber < 0)
+      //         throw new Error('incorrect house number')
+      //     })
+      //     this.#addressesOfBranches = list
+      //   }
+      //   // визначення кількості років існування фірми;
+      //   getYearsOfExistence() {
+      //     const date = new Date()
+      //     const currentYear = date.getFullYear()
+      //     const currentMonth = date.getMonth() + 1
+      //     console.log(currentMonth)
+
+      //     if (currentMonth - this.#foundationDate.month >= 0)
+      //       return currentYear - this.#foundationDate.year
+      //     else return currentYear - this.#foundationDate.year - 1
+      //   }
+      //   // виведення всіх філіалів фірми у вказаному місті;
+      //   showBranchesByCity(city = 'Kyiv') {
+      //     let filteredList = this.#addressesOfBranches.filter(
+      //       (branch) => branch.city === city
+      //     )
+
+      //     let counter = 0
+      //     for (const branch of filteredList) {
+      //       document.write(`--Філіал-- ${++counter} <br>
+      //       Країна: ${branch.country}<br>
+      //       Місто: ${branch.city}<br>
+      //       Вулиця: ${branch.street}<br>
+      //       Номер будинку: ${branch.houseNumber}<br><br>`)
+      //     }
+      //   }
+
+      //   // виведення на екран послуг, що можуть бути виконані за вказану суму грошей та вказаний термін часу;
+      //   showServicesByCostAndDuration(amountOfMoney, duration) {
+      //     let filteredList = this.#services.filter(
+      //       (service) =>
+      //         amountOfMoney >= service.cost && duration >= service.duration
+      //     )
+
+      //     let counter = 0
+      //     for (const service of filteredList) {
+      //       document.write(`--Послуга-- ${++counter} <br>
+      //       Назва послуги: ${service.name}<br>
+      //       Ціна послуги: ${service.cost}$<br>
+      //       Термін виконання: ${service.duration}<br><br>`)
+      //     }
+      //   }
+      // }
+
+      // const date = {
+      //   year: 2014,
+      //   month: 2,
+      // }
+
+      // const services = [
+      //   {
+      //     name: 'Create Web Site',
+      //     cost: 3000,
+      //     duration: 90,
+      //   },
+      //   {
+      //     name: 'Create Landing Page',
+      //     cost: 1000,
+      //     duration: 15,
+      //   },
+      // ]
+
+      // const branches = [
+      //   {
+      // country: 'Ukraine',
+      // city: 'Kyiv',
+      // street: 'Хрещатик',
+      // houseNumber: '2',
+      //   },
+      //   {
+      //     country: 'Ukraine',
+      //     city: 'Lviv',
+      //     street: 'Тараса Шевченка',
+      //     houseNumber: '21',
+      //   },
+      //   {
+      //     country: 'Ukraine',
+      //     city: 'Lviv',
+      //     street: 'Лесі Українки',
+      //     houseNumber: '55',
+      //   },
+      // ]
+
+      // let test = new Firm('Test Name', date, services, branches)
+      // console.log(test)
+      // console.log(test.getYearsOfExistence())
+
+      // test.showBranchesByCity('Lviv')
+
+      // test.showServicesByCostAndDuration(3000, 90)
+    </script>
+  </body>
+</html>

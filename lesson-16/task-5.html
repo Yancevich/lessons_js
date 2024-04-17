@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task 5</title>
+  </head>
+
+  <body>
+    <script>
+      // бінарний пошук
+      // function generateList(length) {
+      //   let arr = []
+      //   for (let i = 0; i < length; i++) {
+      //     arr = [...arr, i]
+      //   }
+      //   return arr
+      // }
+
+      // let a = generateList(128)
+
+      // function binarySearch(list, item) {
+      //   let start = 0
+      //   let end = list.length - 1
+      //   let iterations = 0
+
+      //   while (start <= end) {
+      //     ++iterations
+
+      //     mid = Math.floor((start + end) / 2)
+      //     guess = list[mid]
+
+      //     console.log(start, mid, end)
+
+      //     if (guess === item) {
+      //       console.log(`Iterations = ${iterations}`)
+      //       return mid
+      //     }
+      //     if (guess > item) end = mid - 1
+      //     else start = mid + 1
+      //   }
+      //   return false
+      // }
+
+      // console.log(a)
+
+      // let res = binarySearch(a, 120)
+      // document.write(res)
+
+      // factotial
+
+      // function fact(n) {
+      //   if (n === 0) return 1
+
+      //   return n * fact(n - 1)
+      // }
+
+      // function fibonacci(n) {
+      //   if (n <= 1) {
+      //     return 1
+      //   }
+      //   return fibonacci(n - 1) + fibonacci(n - 2)
+      // }
+
+      // console.log(fibonacci(9))
+
+      // рекурсивна функція підрахуку суми
+      let arr = [-1, 0, 3000, 200, 5000, -1, 1213]
+
+      function countSum(baseList) {
+        const list = [...baseList] // копія масиву, щоб не змінювати наш базовий масив
+        if (list.length == 0) return 0 // базовий випадок коли рекурсія має зупинитись
+        return list.pop() + countSum(list) // беремо значення першого елементу та додаємо до значення рекурсивного випадку
+      }
+
+      console.log(countSum(arr))
+      console.log(arr)
+
+      // рекурсивна функція підрахунку кількості елементів в масиві
+
+      function listLength(baseList) {
+        const list = [...baseList] // копія масиву, щоб не змінювати наш базовий масив
+        if (list.length == 0) return 0 // базовий випадок
+        list.pop() // зменшуємо масив
+        return 1 + listLength(list) // вертаємо значення 1 + рекурсивний випадок
+      }
+
+      console.log(listLength(arr))
+      console.log(arr)
+
+      // рекурсивна функція пошуку максимального числа в масиві
+
+      function findMax(baseList) {
+        const list = [...baseList]
+        if (list.length === 0) return 0
+        if (list.length === 1) return list[0]
+        if (list[0] > list[1]) {
+          list.push(list[0])
+          list.shift()
+          return findMax(list)
+        } else {
+          list.shift()
+          return findMax(list)
+        }
+      }
+
+      // спрощений варіант
+      function findMax2(list) {
+        if (list.length === 0) return 0
+        if (list.length === 1) return list[0]
+
+        const maxRest = findMax2(list.slice(1))
+        return list[0] > maxRest ? list[0] : maxRest
+      }
+
+      console.log(findMax2(arr))
+      console.log(arr)
+    </script>
+  </body>
+</html>
