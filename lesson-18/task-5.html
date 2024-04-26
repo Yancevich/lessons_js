@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task 5</title>
+  </head>
+
+  <style>
+    td {
+      padding: 4px;
+      border: 1px solid black;
+      text-align: center;
+    }
+    table {
+      border-collapse: collapse;
+    }
+  </style>
+
+  <body>
+    <h1>Задача 5</h1>
+
+    <script>
+      // Задача 5. Відобразити таблицю 3*4 з випадковими числами (її треба динамічно створити і вставити на сторінку)
+
+      function createTable() {
+        const rows = 3
+        const columns = 4
+
+        const table = document.createElement('table')
+
+        for (let index = 0; index < rows; index++) {
+          const tr = document.createElement('tr')
+          table.append(tr)
+
+          for (let index = 0; index < columns; index++) {
+            const td = document.createElement('td')
+            td.innerText = Math.floor(Math.random() * 100)
+            tr.append(td)
+          }
+        }
+
+        document.body.append(table)
+      }
+
+      createTable()
+    </script>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task 6</title>
+  </head>
+
+  <body>
+    <h1>Задача 6</h1>
+    <label for="input">
+      Кількість оцінок
+      <input type="number" name="input" id="userInput" value="0" />
+    </label>
+    <div>
+      <button id="getTable">Get table</button>
+    </div>
+    <hr />
+    <script>
+      // Задача 6. Користувач задає кількість оцінок і натискає на кнопку «get table».
+      // В результаті формується таблиця з input, куди користувач вводить оцінки.
+      // Після цього натискає на кнопку “get sum” і знаходить середнє значення.
+
+      class Table {
+        static isCreated = false
+        constructor(length = 1, selector = 'null') {
+          if (Table.isCreated) return this
+          this.list = this.render(length, selector)
+
+          Table.isCreated = this
+        }
+
+        render(length, selector) {
+          if (length < 1) throw new Error('invalid length')
+
+          let arr = []
+          selector = document.querySelector(selector)
+
+          for (let index = 0; index < length; index++) {
+            const input = document.createElement('input')
+            input.setAttribute('value', '0')
+            input.setAttribute('type', 'number')
+            input.setAttribute('table-input', null)
+            arr.push(input)
+          }
+          this.resultDiv = document.createElement('div')
+          selector.after(this.resultDiv)
+
+          this.getSumButton = document.createElement('button')
+          this.getSumButton.innerText = 'Get Sum'
+          this.getSumButton.setAttribute('id', 'getSum')
+          this.getSumButton.onclick = this.getSum.bind(this)
+          selector.after(this.getSumButton)
+
+          selector.after(...arr)
+
+          return arr
+        }
+
+        getSum() {
+          let sum = 0
+          const list = document.querySelectorAll('[table-input]')
+          console.log(list)
+
+          for (const item of list) {
+            sum += parseInt(item.value)
+          }
+
+          this.resultDiv.innerText = `Sum = ${sum}`
+          return sum
+        }
+      }
+
+      const btnGetTable = document.getElementById('getTable')
+      btnGetTable.onclick = () => {
+        const userInputValue = document.getElementById('userInput').value
+        new Table(userInputValue, 'hr')
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task 3</title>
+  </head>
+
+  <body>
+    <h1>Задача 3</h1>
+
+    <label>
+      Рік народження
+      <input type="number" id="year" />
+    </label>
+    <hr />
+    <button id="btn">Порахувати</button>
+    <hr />
+    <label>
+      Років
+      <input type="text" id="res" />
+    </label>
+    <script>
+      // Задача 3. Користувач задає рік народження. Визначити кількість років користувача.
+      function calcYear() {
+        const userYear = parseInt(document.getElementById('year').value)
+        const currentYear = new Date().getFullYear()
+
+        document.getElementById('res').value = currentYear - userYear
+      }
+
+      document.getElementById('btn').onclick = calcYear
+    </script>
+  </body>
+</html>

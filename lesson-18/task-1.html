@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task 1</title>
+  </head>
+
+  <body>
+    <h1>Задача 1</h1>
+
+    <label for="first-number">
+      First number
+      <input type="number" name="first-number" id="input1" value="0" />
+    </label>
+    <br />
+    <label for="second-number">
+      Second number
+      <input type="number" name="second-number" id="input2" value="0" />
+    </label>
+
+    <div>
+      <button type="button" id="addition">Додати</button>
+      <button type="button" id="subtraction">Відняти</button>
+      <button type="button" id="multiplication">Помножити</button>
+      <button type="button" id="division">Поділити</button>
+    </div>
+
+    <hr />
+
+    <label for="result">
+      Результат
+      <input type="number" name="result" id="result" value="0" />
+    </label>
+    <script>
+      //  Задача 1. Розробити калькулятор
+
+      function addition() {
+        const firstNumberValue = parseInt(
+          document.getElementById('input1').value
+        )
+        // const firstNumberValue = parseInt(firstNumber.getAttribute('value'))
+        // console.log(firstNumberValue)
+
+        const secondNumberValue = parseInt(
+          document.getElementById('input2').value
+        )
+
+        const res = firstNumberValue + secondNumberValue
+
+        document.getElementsByName('result')[0].value = res
+      }
+
+      function subtraction() {
+        const firstNumberValue = parseInt(
+          document.getElementById('input1').value
+        )
+
+        const secondNumberValue = parseInt(
+          document.getElementById('input2').value
+        )
+
+        const res = firstNumberValue - secondNumberValue
+
+        document.getElementsByName('result')[0].value = res
+      }
+
+      function multiplication() {
+        const firstNumberValue = parseInt(
+          document.getElementById('input1').value
+        )
+
+        const secondNumberValue = parseInt(
+          document.getElementById('input2').value
+        )
+
+        const res = firstNumberValue * secondNumberValue
+
+        document.getElementsByName('result')[0].value = res
+      }
+
+      function division() {
+        const firstNumberValue = parseInt(
+          document.getElementById('input1').value
+        )
+
+        const secondNumberValue = parseInt(
+          document.getElementById('input2').value
+        )
+
+        const res = firstNumberValue / secondNumberValue
+
+        document.getElementsByName('result')[0].value = res
+      }
+
+      document.getElementById('addition').onclick = addition
+      document.getElementById('subtraction').onclick = subtraction
+      document.getElementById('multiplication').onclick = multiplication
+      document.getElementById('division').onclick = division
+    </script>
+  </body>
+</html>

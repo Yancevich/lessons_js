@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task 4</title>
+  </head>
+
+  <body>
+    <h1>Задача 4</h1>
+    <script>
+      // Задача 4. Наперед задано у скрипті масив зі списком бажань.
+      // Після завантаження сторінки випадковим чином вибираються 3 і відображаються у окремих div (їх треба створити і додати на сторінку)
+
+      const desires = ['TV', 'Journey', 'New Phone', 'New job', 'Learn to sing']
+
+      function showDesires(list, number) {
+        let copylist = [...list]
+        let max = copylist.length
+
+        for (let index = 0; index < number; index++) {
+          const rand = Math.floor(Math.random() * max)
+          const div = document.createElement('div')
+
+          div.innerText = `${copylist[rand]}`
+          document.body.append(div)
+          copylist.splice(rand, 1)
+          --max
+        }
+      }
+      showDesires(desires, 3)
+    </script>
+  </body>
+</html>
