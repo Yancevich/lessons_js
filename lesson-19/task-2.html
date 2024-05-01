@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task 2</title>
+  </head>
+
+  <style>
+    .flexed-column {
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+
+  <body>
+    <h1>Задача 2</h1>
+    <div class="flexed-column">
+      <label> Value 1 <input type="number" value="0" /> </label>
+      <label> Value 2 <input type="number" value="0" /> </label>
+      <label> Value 3 <input type="number" value="0" /> </label>
+      <label> Value 4 <input type="number" value="0" /> </label>
+      <label> Value 5 <input type="number" value="0" /> </label>
+    </div>
+
+    <script>
+      // Задача 2. Дано 5 елементів input. При введенні значення у якийсь із них необхідно автоматично заповнювати інші
+      // (усі попередні у спадному порядку(кожен попередній має значення на 1 менше за наступний),
+      // усі наступні на 1 більше (кожен наступне на 1 більше за попереднього)
+
+      const divContainer = document.querySelector('.flexed-column')
+
+      divContainer.onchange = function (event) {
+        if (event.target.tagName === 'INPUT') {
+          const thisInput = event.target
+          const thisInputValue = parseInt(thisInput.value)
+          let copyInputValue = thisInputValue
+
+          let parentInput = thisInput.parentElement
+          let parentPrev = parentInput.previousElementSibling
+          let parentNext = parentInput.nextElementSibling
+
+          while (parentPrev !== null) {
+            parentPrev.lastElementChild.value = copyInputValue - 1
+            copyInputValue--
+            parentPrev = parentPrev.previousElementSibling
+          }
+          copyInputValue = thisInputValue
+
+          while (parentNext !== null) {
+            parentNext.lastElementChild.value = copyInputValue + 1
+            copyInputValue++
+            parentNext = parentNext.nextElementSibling
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

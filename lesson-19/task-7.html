@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task 7</title>
+  </head>
+  <style>
+    body {
+      overflow: hidden;
+    }
+    .snowflake {
+      position: absolute;
+      font-size: 20px;
+      top: 0;
+      left: 0;
+    }
+  </style>
+
+  <body>
+    <h1>Задача 7</h1>
+    <script>
+      // Задача 7. Відобразити падаючий сніг.
+      // Сніжинка з’являється у верхній частині екрану (top =0) і з випадковою швидкістю рухається вниз (у setInterval викликати метод,
+      // у якому додавати крок до top).
+      // Як тільки сніжинка досягає нижньої частини екрану (top>maxTop) вона знову повинна з’явитись у верхній частині екрану (top=0).
+
+      function createSnowflake(
+        speed,
+        isMutable = true,
+        step = 1,
+        minSpeed = 30,
+        maxSpeed = 10,
+        startPosition = -20
+      ) {
+        const snowFlake = document.createElement('div')
+        snowFlake.innerText = '❄️'
+        snowFlake.classList.add('snowflake')
+
+        snowFlake.style.left =
+          Math.floor(Math.random() * window.innerWidth) + 'px'
+        snowFlake.style.top = startPosition + 'px'
+
+        if (!speed)
+          speed = Math.floor(
+            Math.random() * (maxSpeed - minSpeed + 1) + minSpeed
+          )
+
+        if (isMutable)
+          snowFlake.style.fontSize = Math.floor(Math.random() * 11) + 10 + 'px'
+
+        setInterval(() => fall(snowFlake, step), speed)
+        document.body.append(snowFlake)
+      }
+
+      function fall(snowflake, step = 1) {
+        const positionTop = parseInt(snowflake.style.top)
+        if (positionTop == window.innerHeight) {
+          snowflake.remove()
+        } else {
+          snowflake.style.top = positionTop + step + 'px'
+        }
+      }
+
+      console.log(window.innerHeight)
+      console.log(window.innerWidth)
+
+      setInterval(createSnowflake, 100)
+    </script>
+  </body>
+</html>
