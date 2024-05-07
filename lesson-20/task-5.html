@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task 5</title>
+  </head>
+
+  <style>
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .card {
+      cursor: pointer;
+    }
+    .card--active {
+      border: 5px solid rgb(18, 200, 18);
+    }
+  </style>
+
+  <body>
+    <h1>Задача 5</h1>
+
+    <div class="cards">
+      <div class="card">
+        <img src="https://picsum.photos/id/200/200" alt="" class="card__img" />
+        <h4 class="card__title">Card Title</h4>
+        <span class="card__price">100$</span>
+      </div>
+      <div class="card">
+        <img src="https://picsum.photos/id/201/200" alt="" class="card__img" />
+        <h4 class="card__title">Card Title</h4>
+        <span class="card__price">300$</span>
+      </div>
+      <div class="card">
+        <img src="https://picsum.photos/id/202/200" alt="" class="card__img" />
+        <h4 class="card__title">Card Title</h4>
+        <span class="card__price">200$</span>
+      </div>
+    </div>
+
+    <script>
+      // Задача 5. Відображаємо картки товарів, які користувач може вибирати.
+      // Вибраний товар має зелену рамку (при кліку робити toogle з класом вибраного елемента)
+
+      function activeCard(event) {
+        const target = event.target
+
+        if (target.closest('.card')) {
+          const card = target.closest('.card')
+          // target.closest('.card').classList.toggle('card--active')
+          card.classList.toggle('card--active')
+        }
+      }
+
+      const cards = document.querySelector('.cards')
+
+      cards.addEventListener('click', activeCard)
+    </script>
+  </body>
+</html>

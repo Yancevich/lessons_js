@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task 1</title>
+  </head>
+
+  <style>
+    * {
+      margin: 0;
+    }
+    html,
+    body {
+      height: 100%;
+    }
+    .tank {
+      position: absolute;
+      /* transform: rotate(180deg); */
+    }
+
+    .container-tank {
+      max-width: 800px;
+      margin: 0 auto;
+      height: 100%;
+    }
+
+    .tank-area {
+      height: 100%;
+      background-color: black;
+    }
+  </style>
+
+  <body>
+    <div class="container-tank">
+      <div class="tank-area"></div>
+    </div>
+    <script>
+      // Задача 2. Байрактар. З верхньої частини екрану у випадковій позиції по горизонталі з’являються танки,
+      // які їдуть вниз. При кліку на танк він вибухає і зникає з екрану.
+
+      class Tank {
+        constructor(
+          imgSrc,
+          width,
+          height,
+          selector = null,
+          top = null,
+          left = null
+        ) {
+          this.imgSrc = imgSrc
+          this.width = width
+          this.height = height
+          this.top = top
+          this.left = left
+          this.el = this.render(selector)
+        }
+
+        randomHorizontalPosition() {
+          this.left = Math.floor(
+            Math.random() * (parseInt(this.parent.clientWidth) - this.width + 1)
+          )
+          return this.left
+        }
+
+        move() {}
+
+        render(selector) {
+          const tank = document.createElement('img')
+          tank.setAttribute('src', this.imgSrc)
+          tank.classList.add('tank')
+
+          selector
+            ? (this.parent = document.querySelector(selector))
+            : (this.parent = document.body)
+          this.parent.style.position = 'relative'
+
+          tank.style.cssText = `
+          top: ${
+            !+this.top && this.top != 0 ? -this.height + 'px' : this.top + 'px'
+          };
+          left: ${
+            !this.left
+              ? this.randomHorizontalPosition() + 'px'
+              : this.left + 'px'
+          } ;
+          width: ${this.width + 'px'};
+          height: ${this.height + 'px'};
+          `
+          this.parent.append(tank)
+        }
+      }
+
+      const test = new Tank('img/tank1.png', 100, 100, '.tank-area', 0)
+
+      console.log(test)
+    </script>
+  </body>
+</html>

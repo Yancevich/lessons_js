@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task 3</title>
+  </head>
+
+  <body>
+    <h1>Задача 3</h1>
+
+    <script>
+      // Задача 3. Дано 5 випадковим чином згенерованих нумерованих
+      // списків з рандомними числами (кількість елементів у списку випадкова від 1 до 10, елементи випадкові – від 1 до 100).
+      // При натисненні на кнопку нумеровані списки з парною кількістю елементів зафарбувати у зелений колір, інші у червоний.
+
+      function generateList(count = 1) {
+        const olContainer = document.createElement('div')
+        olContainer.className = 'ol-container'
+        document.body.append(olContainer)
+
+        for (let index = 0; index < count; index++) {
+          const ol = document.createElement('ol')
+          const randomLiCount = Math.floor(Math.random() * 10) + 1
+
+          for (let index = 0; index < randomLiCount; index++) {
+            const randomLiValue = Math.floor(Math.random() * 100) + 1
+            const li = document.createElement('li')
+
+            li.innerText = randomLiValue
+            ol.append(li)
+          }
+          olContainer.append(ol)
+        }
+        const btn = document.createElement('button')
+        btn.innerText = 'кнопка'
+        olContainer.append(btn)
+      }
+
+      // натискаючи на Li
+      // function clicker(event) {
+      //   const elementTag = event.target.tagName
+
+      //   if (elementTag === 'LI') {
+      //     const liValue = parseInt(event.target.innerText)
+      //     console.log(liValue)
+
+      //     if (liValue % 2 === 0) {
+      //       event.target.style.color = 'green'
+      //     } else event.target.style.color = 'red'
+      //   }
+      // }
+
+      // generateList(5)
+      // document.querySelector('.ol-container').onclick = clicker
+
+      // за значенням елементу
+      // function changeColorLi() {
+      //   const container = document.getElementsByClassName('ol-container')[0]
+
+      //   const olList = container.querySelectorAll('ol')
+
+      //   for (const ol of olList) {
+      //     for (const child of ol.children) {
+      //       if (child.tagName == 'LI') {
+      //         const liValue = parseInt(child.innerText)
+      //         if (liValue % 2 === 0) {
+      //           child.style.color = 'green'
+      //         } else child.style.color = 'red'
+      //       }
+      //     }
+      //   }
+      // }
+
+      // generateList(5)
+
+      // document.getElementsByTagName('button')[0].onclick = changeColorLi
+
+      // за довжиною списку
+      function changeColorByLengthOl() {
+        const olList = document.getElementsByTagName('ol')
+
+        for (const ol of olList) {
+          if (ol.childElementCount % 2 === 0) {
+            for (const element of ol.children) {
+              element.style.color = 'green'
+            }
+          } else {
+            for (const element of ol.children) {
+              element.style.color = 'red'
+            }
+          }
+        }
+      }
+
+      generateList(5)
+      document.getElementsByTagName('button')[0].onclick = changeColorByLengthOl
+    </script>
+  </body>
+</html>

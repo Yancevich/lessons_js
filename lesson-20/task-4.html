@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task 4</title>
+  </head>
+
+  <style>
+    td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid black;
+    }
+  </style>
+
+  <body>
+    <h1>Задача 4</h1>
+    <script>
+      // Задача 4. Дано 3 таблиці розмірності 3*3 з випадковими числами.
+      // Якщо відбувається клік на якійсь із клітинок, то до відповідної таблиці додається червона рамка
+      // (спробуйте додати можливість відображення кількості кліків
+      // біля назви таблиці з використанням відповідно доданого для цього атрибута).
+
+      class Table {
+        constructor(name = 'Table', selector = 'body') {
+          this.table = this.render(name, selector)
+        }
+
+        render(name, selector) {
+          const table = document.createElement('table')
+          table.setAttribute('countClick', '0')
+          table.onclick = this.clickTd.bind(this)
+          const caption = document.createElement(`caption`)
+          caption.innerText = name
+
+          table.append(caption)
+
+          const rows = 3
+          const columns = 3
+
+          for (let index = 0; index < rows; index++) {
+            const tr = document.createElement('tr')
+
+            for (let index = 0; index < columns; index++) {
+              const td = document.createElement('td')
+              td.innerText = Math.floor(Math.random() * 100) + 1
+              // td.onclick = this.event.bind(td)
+              tr.append(td)
+            }
+
+            table.append(tr)
+          }
+
+          document.querySelector(selector).append(table)
+        }
+
+        event() {
+          const table = this.closest('table')
+          const newCountClickValue =
+            parseInt(table.getAttribute('countClick')) + 1
+
+          table.setAttribute('countClick', newCountClickValue)
+          table.style.border = '20px solid red'
+        }
+
+        clickTd(event) {
+          const clickedEl = event.target
+          if (clickedEl.tagName === 'TD') {
+            const table = clickedEl.closest('table')
+            const newCountClickValue =
+              parseInt(table.getAttribute('countClick')) + 1
+            table.setAttribute('countClick', newCountClickValue)
+
+            if (table.querySelector('caption>span') === null) {
+              const spanCounter = document.createElement('span')
+              spanCounter.innerText = ` К-сть кліків: ${newCountClickValue}`
+              table.querySelector('caption').append(spanCounter)
+            } else {
+              table.querySelector(
+                'caption>span'
+              ).innerText = ` К-сть кліків: ${newCountClickValue}`
+            }
+            table.style.border = '20px solid red'
+          }
+        }
+      }
+
+      const tb1 = new Table('table 1')
+      const tb2 = new Table('table 2')
+      const tb3 = new Table('table 3')
+    </script>
+  </body>
+</html>
