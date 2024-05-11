@@ -20,20 +20,32 @@
     }
 
     .container-tank {
-      max-width: 800px;
+      max-width: 500px;
       margin: 0 auto;
       height: 100%;
     }
 
     .tank-area {
+      position: relative;
+      overflow: hidden;
       height: 100%;
-      background-color: black;
+      background: url('./img/road_texture.jpg') center / 100%;
+    }
+
+    .entered {
+      cursor: url('img/cursor-bomb.png'), auto;
+    }
+
+    .destroyed {
+      cursor: not-allowed;
+      opacity: 0;
+      transition: all 10s linear;
     }
   </style>
 
   <body>
     <div class="container-tank">
-      <div class="tank-area"></div>
+      <div></div>
     </div>
     <script>
       // Задача 2. Байрактар. З верхньої частини екрану у випадковій позиції по горизонталі з’являються танки,
@@ -51,6 +63,7 @@
           this.imgSrc = imgSrc
           this.width = width
           this.height = height
+          this.selector = selector
           this.top = top
           this.left = left
           this.el = this.render(selector)
@@ -63,17 +76,49 @@
           return this.left
         }
 
-        move() {}
+        updateTop() {
+          this.el.style.top = this.top + 'px'
+        }
+
+        move() {
+          this.selectorHeight = this.parent.clientHeight
+          console.log(this.selectorHeight)
+          if (this.top >= this.selectorHeight) {
+            clearInterval(this.idInterval)
+          }
+          this.top++
+          this.updateTop()
+        }
+
+        hover() {
+          this.el.mouseenter = this.el.classList.add('entered')
+          return true
+        }
+
+        shoot() {
+          if (this.hover()) {
+            this.el.onclick = () => {
+              this.el.classList.remove('entered')
+              this.el.classList.add('destroyed')
+              this.el.src = './img/tank-destroyed.png'
+              clearInterval(this.idInterval)
+              setTimeout(() => this.el.remove(), 10000)
+            }
+          }
+        }
 
         render(selector) {
           const tank = document.createElement('img')
           tank.setAttribute('src', this.imgSrc)
           tank.classList.add('tank')
 
+          tank.addEventListener('mouseenter', this.shoot.bind(this))
+
           selector
             ? (this.parent = document.querySelector(selector))
             : (this.parent = document.body)
-          this.parent.style.position = 'relative'
+
+          this.parent.className = 'tank-area'
 
           tank.style.cssText = `
           top: ${
@@ -88,12 +133,25 @@
           height: ${this.height + 'px'};
           `
           this.parent.append(tank)
+
+          this.idInterval = setInterval(this.move.bind(this), 10)
+
+          return tank
         }
       }
 
-      const test = new Tank('img/tank1.png', 100, 100, '.tank-area', 0)
+      const test = new Tank(
+        'img/tank1.png',
+        150,
+        150,
+        '.container-tank>div',
+        -175
+      )
 
-      console.log(test)
+      setInterval(
+        () => new Tank('img/tank1.png', 150, 150, '.container-tank>div', -175),
+        4000
+      )
     </script>
   </body>
 </html>
