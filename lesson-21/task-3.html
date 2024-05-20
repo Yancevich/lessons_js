@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task 3</title>
+  </head>
+
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+    }
+  </style>
+
+  <body>
+    <script>
+      // --- властивості ---
+      // Координата Х
+      // Координата У
+      // шлях до зображення
+      // інтервал оновлення
+      // --- методи ---
+      // генерування елемента розмітки
+      // оновлення через вказаний інтервал (випадкове зміщення по горизонталі (зміна координати Х))
+
+      class Entity {
+        constructor(x = 0, y = 0, imgSrc, interval) {
+          this.x = x
+          this.y = y
+          this.imgSrc = imgSrc
+          this.interval = interval
+        }
+
+        render(selector = 'body') {
+          this.el = document.createElement('div')
+          const parent = document.querySelector(selector)
+          this.parent = parent
+
+          parent.prepend(this.el)
+          parent.style.position = 'relative'
+
+          this.el.style.width = 200 + 'px'
+          this.el.style.height = 200 + 'px'
+          this.el.style.position = 'absolute'
+          this.el.style.left = this.x + 'px'
+          this.el.style.top = this.y + 'px'
+          this.el.style.background = `url(${this.imgSrc}) center/cover no-repeat`
+        }
+
+        random(min = 0, max = 100) {
+          return min + Math.floor(Math.random() * (max - min + 1))
+        }
+
+        update(callback) {
+          setInterval(callback, this.interval)
+        }
+      }
+
+      class House extends Entity {
+        constructor(x, y, imgSrc, interval) {
+          super(x, y, imgSrc, interval)
+        }
+
+        update(max = 400, min = 30) {
+          super.update(() => {
+            const randomCase = this.random(0, 1)
+            let newValue = parseInt(this.el.style.width)
+            if (newValue > max || newValue < min) {
+              newValue = 200
+            }
+
+            switch (randomCase) {
+              case 0:
+                newValue += this.random()
+                this.el.style.width = newValue + 'px'
+                this.el.style.height = newValue + 'px'
+                break
+
+              case 1:
+                newValue -= this.random()
+                this.el.style.width = newValue + 'px'
+                this.el.style.height = newValue + 'px'
+                break
+
+              default:
+                console.log('err')
+                break
+            }
+          })
+        }
+      }
+
+      class Dog extends Entity {
+        constructor(x, y, imgSrc, interval) {
+          super(x, y, imgSrc, interval)
+        }
+
+        //оновлення через вказаний інтервал (випадкове зміщення по горизонталі (зміна координати Х))
+        update() {
+          super.update(() => {
+            const randomCase = this.random(0, 1)
+            let newValue = parseInt(this.el.style.left)
+
+            if (newValue > this.parent.clientWidth || newValue < 0) {
+              this.el.style.left = this.parent.clientWidth / 2 + 'px'
+              newValue = parseInt(this.el.style.left)
+            }
+
+            switch (randomCase) {
+              case 0:
+                newValue += this.random()
+                this.el.style.left = newValue + 'px'
+                break
+
+              case 1:
+                newValue -= this.random()
+                this.el.style.left = newValue + 'px'
+                break
+
+              default:
+                console.log('err')
+                break
+            }
+          })
+        }
+      }
+
+      class Bird extends Entity {
+        constructor(x, y, imgSrc, interval) {
+          super(x, y, imgSrc, interval)
+        }
+
+        update() {
+          super.update(() => {
+            const randomCase = this.random(0, 1)
+            let x = parseInt(this.el.style.left)
+            let y = parseInt(this.el.style.top)
+
+            if (x > this.parent.clientWidth || x < 0) {
+              this.el.style.left = this.parent.clientWidth / 2 + 'px'
+              x = parseInt(this.el.style.left)
+            }
+
+            if (y > this.parent.clientHeight || y < 0) {
+              this.el.style.top = this.parent.clientHeight / 2 + 'px'
+              y = parseInt(this.el.style.top)
+            }
+
+            switch (randomCase) {
+              case 0:
+                x += this.random()
+                this.el.style.left = x + 'px'
+                y += this.random()
+                this.el.style.top = y + 'px'
+                break
+
+              case 1:
+                x -= this.random()
+                this.el.style.left = x + 'px'
+                y -= this.random()
+                this.el.style.top = y + 'px'
+                break
+
+              default:
+                console.log('err')
+                break
+            }
+          })
+        }
+      }
+
+      const house = new House(0, 0, 'img/tank1.png', 1000)
+      house.render()
+      house.update()
+
+      const dog = new Dog(500, 500, 'img/dog.png', 300)
+      dog.render()
+      dog.update()
+
+      const bird = new Bird(500, 200, 'img/bird.png', 500)
+      bird.render()
+      bird.update()
+    </script>
+  </body>
+</html>

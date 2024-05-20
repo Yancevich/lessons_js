@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task 4</title>
+  </head>
+
+  <style>
+    h2 {
+      margin: 0 0 20px 0;
+    }
+    .container {
+      width: fit-content;
+      padding: 25px 50px;
+      border-radius: 20px;
+      border: 1px solid black;
+    }
+    .inputs-block {
+      display: flex;
+      gap: 10px;
+      flex-direction: column;
+      margin-bottom: 10px;
+    }
+
+    .inputs-block input {
+      padding: 10px;
+      border-radius: 10px;
+      background-color: #e3e3e3;
+      border: 1px solid rgb(192, 192, 192);
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn {
+      cursor: pointer;
+      color: #fff;
+      padding: 5px 20px;
+      border-radius: 10px;
+      background-color: black;
+    }
+    .good {
+      color: green;
+      margin: 5px 0px;
+    }
+
+    .error {
+      color: red;
+      margin: 5px 0px;
+    }
+  </style>
+
+  <body>
+    <h1>Задача 4</h1>
+    <script>
+      // Задача 4. Користувач задає місяць навчання учня (перевіряти чи є числом, чи від 1 до 12, чи не канікули)
+      // та оцінку (перевіряти чи є числом, чи від 1 до 100). Вивести чи зможе він виправити оцінку
+      // (якщо оцінка погана і це не останній місяць у семестрі) . Обробку усіх помилок зробити з використанням відповідних класів.
+
+      class IsNotMonthError extends RangeError {
+        constructor() {
+          super()
+          this.message = 'Некоректний місяць. Введіть місяць в діапазоні 1 - 12'
+          this.name = 'IsNotMonthError'
+        }
+      }
+
+      class IsNotScoreError extends RangeError {
+        constructor() {
+          super()
+          this.message = 'Некоректна оцінка. Введіть оцінку в діапазоні 1 - 100'
+          this.name = 'IsNotScoreError'
+        }
+      }
+
+      class ToLateForFixError extends Error {
+        constructor() {
+          super()
+          this.message = 'Уже пізно виправляти оцінку'
+          this.name = 'ToLateForFixError'
+        }
+      }
+
+      class ScoreManager {
+        constructor() {
+          this.el = this.render()
+        }
+
+        validateMonth(val) {
+          try {
+            parseInt(val)
+            if (val < 1 || val > 12) throw new IsNotMonthError()
+            if (val >= 10 && val <= 12) throw new ToLateForFixError()
+          } catch (error) {
+            const message = document.createElement('div')
+            message.classList.add('error')
+            message.innerText = error.message
+            this.el.append(message)
+            return false
+          }
+          return true
+        }
+
+        validateScore(val) {
+          try {
+            parseInt(val)
+            if (val < 1 || val > 100) throw new IsNotScoreError()
+          } catch (error) {
+            const message = document.createElement('div')
+            message.classList.add('error')
+            message.innerText = error.message
+            this.el.append(message)
+            return false
+          }
+          return true
+        }
+
+        check() {
+          const listOfErrors = document.querySelectorAll('.error, .good')
+          for (const error of listOfErrors) {
+            error.remove()
+          }
+
+          if (
+            this.validateMonth(this.inputMonth.value) &&
+            this.validateScore(this.inputScore.value)
+          ) {
+            const message = document.createElement('div')
+            message.classList.add('good')
+            message.innerText = 'Ще вспієш!'
+            this.el.append(message)
+          }
+        }
+
+        render() {
+          const container = document.createElement('div')
+          container.classList.add('container')
+
+          const title = document.createElement('h2')
+          title.innerText = 'Перевірка оцінки'
+
+          const inputsBlock = document.createElement('div')
+          inputsBlock.classList.add('inputs-block')
+
+          const labelMonth = document.createElement('label')
+          const spanMonth = document.createElement('span')
+          spanMonth.innerText = 'Введіть місяць'
+
+          const inputMonth = document.createElement('input')
+          inputMonth.type = 'number'
+          labelMonth.append(spanMonth, inputMonth)
+
+          this.inputMonth = inputMonth
+
+          const labelScore = document.createElement('label')
+          const spanScore = document.createElement('span')
+          spanScore.innerText = 'Введіть оцінку'
+          const inputScore = document.createElement('input')
+          inputScore.type = 'number'
+          labelScore.append(spanScore, inputScore)
+
+          this.inputScore = inputScore
+
+          const button = document.createElement('button')
+          button.classList.add('btn')
+          button.innerText = 'Перевірка'
+          button.onclick = this.check.bind(this)
+
+          inputsBlock.append(labelMonth, labelScore)
+          container.append(title, inputsBlock, button)
+
+          document.body.append(container)
+          return container
+        }
+      }
+
+      const test = new ScoreManager()
+      console.log(test)
+      // <div class="container">
+      //   <h2>Перевірка оцінки</h2>
+      //   <div class="inputs-block">
+      //     <label>
+      //       <span>Введіть місяць</span>
+      //       <input id="input-month" type="number" />
+      //     </label>
+      //     <label>
+      //       <span>Введіть оцінку</span>
+      //       <input id="input-score" type="number" />
+      //     </label>
+      //   </div>
+      //   <button class="btn" type="button">
+      //     Перевірка
+      //   </button>
+      // </div>
+    </script>
+  </body>
+</html>

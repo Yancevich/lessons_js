@@ -1,0 +1,94 @@
+/* Підключення шрифтів */
+@import url("fonts.css");
+
+/* Скидання стилів */
+@import url("reset.css");
+
+/* Основні стилі */
+body {
+	font-family: "Causten", sans-serif;
+}
+
+.wrapper {
+	min-height: 100%;
+	overflow: clip;
+	display: flex;
+	flex-direction: column;
+}
+
+.wrapper>main {
+	flex-grow: 1;
+}
+
+.header {
+	background-color: #070F2B;
+	min-height: 100px;
+}
+
+[class*="__container"] {
+	max-width: 1170px;
+	padding-left: 15px;
+	padding-right: 15px;
+	margin: 0 auto;
+}
+
+.header__container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100px;
+}
+
+.header__title {
+	text-transform: uppercase;
+	color: #9290C3;
+	font-size: 24px;
+	font-weight: 700;
+}
+
+.page {
+	background-color: #535C91;
+}
+
+.page__container {
+	padding: 20px 15px;
+}
+
+.hw-list {
+	background-color: #1B1A55;
+	padding: 20px;
+	border-radius: 20px;
+}
+
+.hw-list__item {
+	background-color: #070F2B;
+	border-radius: 10px;
+	transition: all 0.4s ease;
+}
+
+.hw-list__item--for-check {
+	background-color: #2b0707;
+}
+
+.hw-list__item:not(:last-child) {
+	margin-bottom: 20px;
+}
+
+.hw-list__link {
+	font-size: 20px;
+	font-weight: 600;
+	color: #9290C3;
+	line-height: 132%;
+	height: 100%;
+	width: 100%;
+	padding: 10px;
+
+}
+
+.hw-list__item:hover {
+	background-color: #143dd4;
+}
+
+/* .hw-list__item:hover .hw-list__link {
+	text-decoration: underline;
+} */

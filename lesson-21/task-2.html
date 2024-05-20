@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task 2</title>
+  </head>
+
+  <body>
+    <script>
+      // Задача 2. Створити клас Bank, у якому зберігається масив клієнтів. Виконати такі операції
+      //  Вивести всіх простих клієнтів;
+      //  Вивести всіх клієнтів GoldenClient;
+      //  Знайти сумарну кількість грошей на рахунку;
+
+      class Client {
+        static #idIterator = 0
+        #id
+
+        constructor(fullName, cashNum) {
+          this.#id = this.setId()
+          this.fullName = fullName
+          this.cashNum = cashNum
+          this.status = 'simple'
+        }
+
+        setId() {
+          return Client.#idIterator++
+        }
+
+        get id() {
+          return this.#id
+        }
+
+        addMoney(val) {
+          this.cashNum += val
+        }
+
+        withdrawal(val) {
+          if (this.cashNum < val) {
+            document.write(`<mark>Не вистачає коштів</mark> <br>`)
+            return false
+          }
+          this.cashNum -= val
+          document.write(`<hr>Знято - ${val}$<hr>`)
+        }
+
+        toString() {
+          return `id - ${this.#id}<br>Full name - ${this.fullName}<br>Cash - ${
+            this.cashNum
+          }$`
+        }
+      }
+
+      class GoldenClient extends Client {
+        constructor(fullName, cashNum, creditLimit, percentageRate) {
+          super(fullName, cashNum)
+          this.creditLimit = creditLimit
+          this.percentageRate = percentageRate
+          this.status = 'Gold'
+        }
+
+        countPenny(val) {
+          return val * this.percentageRate
+        }
+
+        withdrawal(val) {
+          if (val > this.cashNum) {
+            const rest = Math.abs(this.cashNum - val)
+            const penny = this.countPenny(rest)
+            const creditMoney = rest + penny
+
+            if (creditMoney > this.creditLimit) {
+              document.write(
+                '<hr><mark>Перевищено кредитний ліміт! Операцію зняття коштів відмінено</mark><hr>'
+              )
+              return false
+            }
+            this.creditLimit -= creditMoney
+            this.cashNum = 0
+            document.write(
+              `<hr>Знято - ${
+                val + penny
+              }$<br>Використано кредитних коштів - ${creditMoney}$ (включно з комісією)<br>Комісія - ${penny}$<hr>`
+            )
+          } else {
+            super.withdrawal(val)
+          }
+        }
+
+        toString() {
+          const massage =
+            super.toString() +
+            `<br>Credit Limit - ${this.creditLimit}$<br> Percentage Rate - ${this.percentageRate}`
+          return massage
+        }
+      }
+
+      const clients = [
+        new GoldenClient('Anton A. A.', 5000, 10000, 0.03),
+        new GoldenClient('Victor A. A.', 10000, 50000, 0.02),
+        new Client('Oleg V. V.', 597),
+        new GoldenClient('Stepan B. M.', 2000, 6000, 0.03),
+        new Client('Igor A. V.', 1603),
+        new GoldenClient('Olga I. S.', 9000, 10000, 0.03),
+        new Client('Inna K. O.', 1227),
+      ]
+      // Вивести всіх простих клієнтів;
+      //  Вивести всіх клієнтів GoldenClient;
+      //  Знайти сумарну кількість грошей на рахунку;
+      class Bank {
+        constructor(listOfClients = []) {
+          this.clients = [...listOfClients]
+        }
+
+        showFunc(status = 'simple') {
+          for (const client of this.clients) {
+            if (client.status === status) document.write(`<hr>${client}<hr>`)
+          }
+        }
+
+        showSimpleClients() {
+          this.showFunc()
+        }
+
+        showGoldClients() {
+          this.showFunc('Gold')
+          // document.write(
+          //   this.clients.filter((client) => client instanceof GoldenClient)
+          // )
+        }
+
+        getTotalBalance() {
+          const res = this.clients.reduce(
+            (total, client) => total + client.cashNum,
+            0
+          )
+          document.write(`<hr><b>Total balance - ${res}$</b><hr>`)
+          return res
+        }
+      }
+
+      let bank = new Bank(clients)
+
+      bank.showSimpleClients()
+      // bank.showGoldClients()
+      bank.getTotalBalance()
+    </script>
+  </body>
+</html>

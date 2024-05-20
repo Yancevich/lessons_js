@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task 1</title>
+  </head>
+
+  <body>
+    <script>
+      // Задача 1. Створити клас Client
+      // Властивості
+      //    ID
+      //    ПІБ
+      //    Кількість грошей на рахунку
+      // Методи
+      //    Додавання грошей
+      //    Зняття грошей
+      //    ToString
+
+      // На основі цього класу створити клас GoldenClient
+      // Властивості
+      //    ID
+      //    ПІБ
+      //    Кількість грошей на рахунку
+      //    Ліміт кредитних коштів
+      //    Відсоток за використання кредитних коштів
+      // Методи
+      //    Додавання грошей
+      //    Зняття грошей
+      //    Визначення пені за використання кредитних коштів
+      //    ToString
+
+      class Client {
+        static #idIterator = 0
+        #id
+
+        constructor(fullName, cashNum) {
+          this.#id = this.setId()
+          this.fullName = fullName
+          this.cashNum = cashNum
+        }
+
+        setId() {
+          return Client.#idIterator++
+        }
+
+        get id() {
+          return this.#id
+        }
+
+        addMoney(val) {
+          this.cashNum += val
+        }
+
+        withdrawal(val) {
+          if (this.cashNum < val) {
+            document.write(`<mark>Не вистачає коштів</mark> <br>`)
+            return false
+          }
+          this.cashNum -= val
+          document.write(`<hr>Знято - ${val}$<hr>`)
+        }
+
+        toString() {
+          return `id - ${this.#id}<br>Full name - ${this.fullName}<br>Cash - ${
+            this.cashNum
+          }$`
+        }
+      }
+
+      // Властивості
+      //    ID
+      //    ПІБ
+      //    Кількість грошей на рахунку
+      //    Ліміт кредитних коштів
+      //    Відсоток за використання кредитних коштів
+      // Методи
+      //    Додавання грошей
+      //    Зняття грошей
+      //    Визначення пені за використання кредитних коштів
+      //    ToString
+
+      class GoldenClient extends Client {
+        constructor(fullName, cashNum, creditLimit, percentageRate) {
+          super(fullName, cashNum)
+          this.creditLimit = creditLimit
+          this.percentageRate = percentageRate
+        }
+
+        countPenny(val) {
+          return val * this.percentageRate
+        }
+
+        withdrawal(val) {
+          if (val > this.cashNum) {
+            const rest = Math.abs(this.cashNum - val)
+            const penny = this.countPenny(rest)
+            const creditMoney = rest + penny
+
+            if (creditMoney > this.creditLimit) {
+              document.write(
+                '<hr><mark>Перевищено кредитний ліміт! Операцію зняття коштів відмінено</mark><hr>'
+              )
+              return false
+            }
+            this.creditLimit -= creditMoney
+            this.cashNum = 0
+            document.write(
+              `<hr>Знято - ${
+                val + penny
+              }$<br>Використано кредитних коштів - ${creditMoney}$ (включно з комісією)<br>Комісія - ${penny}$<hr>`
+            )
+          } else {
+            super.withdrawal(val)
+          }
+        }
+
+        toString() {
+          const massage =
+            super.toString() +
+            `<br>Credit Limit - ${this.creditLimit}$<br> Percentage Rate - ${this.percentageRate}`
+          return massage
+        }
+      }
+
+      const gl = new GoldenClient('Anton A. A.', 5000, 10000, 0.03)
+
+      document.write(gl + `<hr>`)
+      gl.addMoney(200)
+      document.write(gl + `<hr>`)
+      gl.withdrawal(5500)
+      document.write(gl + `<hr>`)
+    </script>
+  </body>
+</html>
