@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task 3</title>
+  </head>
+
+  <body>
+    <script>
+      //  Задача 7. Дано список студентів (ім’я і дата народження: у формі тексту (день.місяць.рік). Знайти найстаршого студента
+
+      const studentsList = [
+        {
+          name: 'Anton',
+          date: '05.03.2004',
+        },
+
+        {
+          name: 'Oleg',
+          date: '02.07.2003',
+        },
+        {
+          name: 'Victor',
+          date: '30.03.2005',
+        },
+        {
+          name: 'Stepan',
+          date: '24.09.2003',
+        },
+      ]
+
+      function getOlderStudent(list) {
+        const copyList = JSON.parse(JSON.stringify(list))
+
+        for (const item of list) {
+          item.date = item.date.replaceAll('.', ':')
+        }
+
+        console.log(copyList)
+
+        const res = copyList.reduce((oldest, student) =>
+          Date.parse(oldest.date) < Date.parse(student.date) ? oldest : student
+        )
+        return res
+      }
+
+      console.log(getOlderStudent(studentsList))
+    </script>
+  </body>
+</html>

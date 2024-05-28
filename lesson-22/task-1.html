@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task 1</title>
+  </head>
+  <style>
+    #clock {
+      font-size: 20px;
+      width: 200px;
+      height: 100px;
+      color: black;
+    }
+  </style>
+
+  <body>
+    <div id="clock"></div>
+    <script>
+      // Задача 1. Виводити на екран скільки хвилин користувач вже на сайті
+      function sessionTimer() {
+        const clock = document.getElementById('clock')
+        const startTime = new Date()
+
+        setInterval(() => {
+          const time = new Date(Date.now() - startTime)
+          let seconds = time.getSeconds().toString()
+          let minutes = time.getMinutes().toString()
+
+          if (seconds.length == 1) seconds = `0${seconds}`
+          if (minutes.length == 1) minutes = `0${minutes}`
+
+          clock.innerText = `Ваша сесіся: ${minutes}хв. ${seconds}с.`
+        })
+      }
+
+      sessionTimer()
+    </script>
+  </body>
+</html>

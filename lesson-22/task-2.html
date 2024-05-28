@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task 2</title>
+  </head>
+
+  <body>
+    <script>
+      // Задача 6. Вивести скільки зараз годин у Лондоні, Парижі, Сіднеї.
+
+      const date = new Date()
+
+      const LONDON_HOURS = new Date(
+        date.toLocaleString('en-US', { timeZone: 'Europe/London' })
+      ).getHours()
+      const PARIS_HOURS = new Date(
+        date.toLocaleString('en-US', { timeZone: 'Europe/Paris' })
+      ).getHours()
+      const SYDNEY_HOURS = new Date(
+        date.toLocaleString('en-US', { timeZone: 'Australia/Sydney' })
+      ).getHours()
+
+      document.write(
+        `London hours: ${LONDON_HOURS}<br>Paris hours: ${PARIS_HOURS}<br>Sydney hours: ${SYDNEY_HOURS}<br>`
+      )
+    </script>
+  </body>
+</html>
