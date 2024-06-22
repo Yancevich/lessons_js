@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task 4</title>
+  </head>
+
+  <body>
+    <h1>Задача 4</h1>
+    <script>
+      // Задача 12. Сформувати масив з 1000 елементів від 1 до 800. Порівняти час сортування бульбашкою і  вставкою.
+
+      function generateList(length) {
+        let arr = []
+        for (let index = 0; index < length; index++) {
+          arr.push(Math.floor(Math.random() * 800) + 1)
+        }
+        return arr
+      }
+
+      let list = generateList(1000)
+
+      console.log(list)
+
+      function bubbleSort(arr) {
+        const array = [...arr]
+        let swaped
+
+        do {
+          swaped = false
+
+          for (let index = 1; index < array.length; index++) {
+            if (array[index - 1] > array[index]) {
+              const tmp = array[index]
+              array[index] = array[index - 1]
+              array[index - 1] = tmp
+              swaped = true
+            }
+          }
+        } while (swaped)
+
+        return array
+      }
+
+      function insertSort(arr) {
+        const array = [...arr]
+
+        for (let index = 1; index < array.length; index++) {
+          const element = array[index]
+          j = index - 1
+
+          while (j >= 0 && array[j] > element) {
+            array[j + 1] = array[j]
+            j--
+          }
+          array[j + 1] = element
+        }
+
+        return array
+      }
+
+      function functionTimeCheker(callback) {
+        const startTime = new Date()
+        const callbackRes = callback()
+        const endTime = new Date()
+        const functionTime = endTime - startTime
+
+        console.log(functionTime + 'ms')
+        return callbackRes
+      }
+
+      const sortedArrByBubble = functionTimeCheker(() => bubbleSort(list))
+
+      const sortedArrByInsert = functionTimeCheker(() => insertSort(list))
+
+      document.write(sortedArrByBubble + '<br>')
+      document.write(sortedArrByInsert + '<br>')
+    </script>
+  </body>
+</html>
